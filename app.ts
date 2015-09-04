@@ -1,20 +1,41 @@
 /// <reference path="typings/angular2/angular2.d.ts" />
-import {Component, View, bootstrap} from 'angular2/angular2';
+import {Component, View, bootstrap, NgFor, NgIf} from 'angular2/angular2';
 
 // Annotation section
 @Component({
-  selector: 'my-app'
+  selector: 'my-app',
+  appInjector: [FriendsService]
 })
 @View({
-  // template: '<h1>Hello {{ name }}</h1>'templateUrl
-  templateUrl: 'views/grid.html'
+  templateUrl: 'views/grid.html',
+  directives: [NgFor, NgIf]
 })
+
 // Component controller
 class MyAppComponent {
-  name: string;
-  constructor() {
-    this.name = 'Alice';
+  myName: string;
+  names: Array<string>;
+  todos: Array<string>;
+
+  constructor(friendsService: FriendsService) {
+    this.myName = 'Alice';
+    this.names = friendsService.names;
+    this.todos = ["Eat Breakfast", "Walk Dog", "Breathe"];
   }
+
+  addTodo(todo: string) {
+    this.todos.push(todo);
+  }
+
+  doneTyping($event) {
+    if($event.which === 13) {
+      this.addTodo($event.target.value);
+      $event.target.value = null;
+    }
+  }
+
 } 
+
+
 
 bootstrap(MyAppComponent);

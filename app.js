@@ -13,18 +13,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 // Annotation section
 var MyAppComponent = (function () {
-    function MyAppComponent() {
-        this.name = 'Alice';
+    function MyAppComponent(friendsService) {
+        this.myName = 'Alice';
+        this.names = friendsService.names;
+        this.todos = ["Eat Breakfast", "Walk Dog", "Breathe"];
     }
+    MyAppComponent.prototype.addTodo = function (todo) {
+        this.todos.push(todo);
+    };
+    MyAppComponent.prototype.doneTyping = function ($event) {
+        if ($event.which === 13) {
+            this.addTodo($event.target.value);
+            $event.target.value = null;
+        }
+    };
     MyAppComponent = __decorate([
         angular2_1.Component({
-            selector: 'my-app'
+            selector: 'my-app',
+            appInjector: [FriendsService]
         }),
         angular2_1.View({
-            // template: '<h1>Hello {{ name }}</h1>'templateUrl
-            templateUrl: 'views/grid.html'
+            templateUrl: 'views/grid.html',
+            directives: [angular2_1.NgFor, angular2_1.NgIf]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [FriendsService])
     ], MyAppComponent);
     return MyAppComponent;
 })();
