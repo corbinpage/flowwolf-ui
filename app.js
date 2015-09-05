@@ -11,30 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 /// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
+var grid_1 = require('grid');
 // Annotation section
 var MyAppComponent = (function () {
     function MyAppComponent(friendsService) {
-        this.myName = 'Alice';
-        this.names = friendsService.names;
-        this.todos = ["Eat Breakfast", "Walk Dog", "Breathe"];
+        this.title = 'Cloud Decision Table';
     }
-    MyAppComponent.prototype.addTodo = function (todo) {
-        this.todos.push(todo);
-    };
-    MyAppComponent.prototype.doneTyping = function ($event) {
-        if ($event.which === 13) {
-            this.addTodo($event.target.value);
-            $event.target.value = null;
-        }
-    };
     MyAppComponent = __decorate([
         angular2_1.Component({
             selector: 'my-app',
             appInjector: [FriendsService]
         }),
         angular2_1.View({
-            templateUrl: 'views/grid.html',
-            directives: [angular2_1.NgFor, angular2_1.NgIf]
+            templateUrl: 'views/app.html',
+            directives: [angular2_1.NgFor, angular2_1.NgIf, grid_1.GridComponent]
         }), 
         __metadata('design:paramtypes', [FriendsService])
     ], MyAppComponent);

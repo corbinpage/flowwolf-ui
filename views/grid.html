@@ -1,17 +1,15 @@
-<h1>Hello {{myName}}</h1>
-<p>Friends:</p>
-<ul>
- <li *ng-for="#name of names">
-  {{ name }}
-</li>
-<p *ng-if="names.length > 3">You have many friends!</p>
-</ul>
 
-<h1>ToDo List</h1>
-<ul>
-   <li *ng-for="#todo of todos">
-     {{ todo }}
-   </li>
-</ul>
-<input (keyUp)="doneTyping($event)" #todotext>
-<button (click)="addTodo(todotext.value)">Add Todo</button>
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+    <tr style="font-weight: bold">
+      <td style="width:35%">Name</td>
+      <td style="width:20%">Status</td>
+      <td style="width:20%">Group</td>
+      <td style="width:25%">Edit</td>
+    </tr>
+  </thead>
+  <tbody>
+    <my-row *ng-for="#row of users"></my-row>
+  </tbody>
+</table>
+<button class="btn btn-default" (click)="addUser()">Add row</button>

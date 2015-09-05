@@ -1,0 +1,37 @@
+    <tr>
+      <td>
+        <!-- editable username (text with validation) -->
+        <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+          <!-- {{ user.name || 'empty' }} -->
+          bro
+        </span>
+      </td>
+      <td>
+        <!-- editable status (select-local) -->
+        <span editable-select="user.status" e-name="status" e-form="rowform" e-ng-options="s.value as s.text for s in statuses">
+          <!-- {{ user.status || 'empty' }} -->
+        </span>
+      </td>
+      <td>
+        <!-- editable group (select-remote) -->
+        <span editable-select="user.group" e-name="group" e-form="rowform" e-ng-options="g.id as g.text for g in groups">
+          <!-- {{ user.group || 'empty' }} -->
+        </span>
+      </td>
+    </td>
+    <td style="white-space: nowrap">
+      <!-- form -->
+      <form editable-form #rowform onbeforesave="saveUser($data, user.id)" [hidden]="!editable" class="form-buttons form-inline" shown="inserted == user">
+        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+          Save
+        </button>
+        <button type="button" ng-disabled="rowform.$waiting" (click)="toggleEdit()" class="btn btn-default">
+          Cancel
+        </button>
+      </form>
+      <div class="buttons" [hidden]="editable">
+        <button class="btn btn-primary" (click)="toggleEdit()">Edit</button>
+        <button class="btn btn-danger" (click)="removeUser($index)">X</button>
+      </div>  
+    </td>
+  </tr>

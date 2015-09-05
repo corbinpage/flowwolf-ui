@@ -9,20 +9,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// TypeScript
+/// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
-var DisplayComponent = (function () {
-    function DisplayComponent() {
-        this.myName = "Alice";
+//TypeScript
+var RowComponent = (function () {
+    function RowComponent() {
+        this.editable = false;
     }
-    DisplayComponent = __decorate([
+    RowComponent.prototype.toggleEdit = function () {
+        this.editable = !this.editable;
+    };
+    RowComponent = __decorate([
         angular2_1.Component({
-            selector: 'display'
+            selector: 'my-row',
+            properties: ['rowId: row-id']
         }),
         angular2_1.View({
-            template: "\n   <p>My name: {{ myName }}</p>\n  "
+            templateUrl: 'views/row.html',
+            directives: [angular2_1.NgFor, angular2_1.NgIf]
         }), 
         __metadata('design:paramtypes', [])
-    ], DisplayComponent);
-    return DisplayComponent;
+    ], RowComponent);
+    return RowComponent;
 })();
+exports.RowComponent = RowComponent;
