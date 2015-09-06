@@ -1,6 +1,7 @@
 /// <reference path="typings/angular2/angular2.d.ts" />
 import {Component, View, bootstrap, NgFor, NgIf} from 'angular2/angular2';
-import {RuleComponent} from 'rule'
+import {RuleComponent} from 'rule';
+import {FriendsService} from 'friendsService';
 
 // Annotation section
 @Component({
@@ -8,7 +9,7 @@ import {RuleComponent} from 'rule'
   appInjector: [FriendsService]
 })
 @View({
-  templateUrl: 'views/app.html',
+  templateUrl: 'components/app/app.html',
   directives: [NgFor, NgIf, RuleComponent]
 })
 
@@ -19,9 +20,6 @@ class MyAppComponent {
   constructor(friendsService: FriendsService) {
     this.title = 'Cloud Decision Table';
   }
-
-} 
-
-
+}
 
 bootstrap(MyAppComponent);

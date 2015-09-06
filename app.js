@@ -12,6 +12,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 /// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
 var rule_1 = require('rule');
+var friendsService_1 = require('friendsService');
 // Annotation section
 var MyAppComponent = (function () {
     function MyAppComponent(friendsService) {
@@ -20,13 +21,13 @@ var MyAppComponent = (function () {
     MyAppComponent = __decorate([
         angular2_1.Component({
             selector: 'my-app',
-            appInjector: [FriendsService]
+            appInjector: [friendsService_1.FriendsService]
         }),
         angular2_1.View({
-            templateUrl: 'views/app.html',
+            templateUrl: 'components/app/app.html',
             directives: [angular2_1.NgFor, angular2_1.NgIf, rule_1.RuleComponent]
         }), 
-        __metadata('design:paramtypes', [FriendsService])
+        __metadata('design:paramtypes', [friendsService_1.FriendsService])
     ], MyAppComponent);
     return MyAppComponent;
 })();

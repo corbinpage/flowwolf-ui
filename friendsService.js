@@ -4,3 +4,4 @@ var FriendsService = (function () {
     }
     return FriendsService;
 })();
+exports.FriendsService = FriendsService;

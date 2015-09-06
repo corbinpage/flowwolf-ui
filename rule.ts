@@ -2,86 +2,59 @@
 import {Component, View, NgFor, NgIf} from 'angular2/angular2';
 import {Condition} from 'condition';
 
+export class Rule{
+
+  id: number;
+  inputs: Array<string>;
+  conditions: Array<Condition>;
+  operators: Array<string>;
+  outputs: Array<string>;
+
+  constructor() {
+    this.id = -1;
+    this.inputs = ['State','Revenue','Industry'];
+    this.operators = ['=','>','<','between','>=','<=','!=','in','!in'];
+    this.outputs = ['Decision','Assignee'];
+    this.conditions = [new Condition(), new Condition(), new Condition()];
+  }
+} 
+
+
 //TypeScript
 @Component({
   selector: 'my-rule'
 })
 
 @View({
-  templateUrl: 'views/rule.html',
+  templateUrl: 'components/rule/rule.html',
   directives: [NgFor, NgIf]
 })
 
 export class RuleComponent {
-  conditions: Array<Condition>;
-  inserted: Object;
+  rule: Rule;
   missingText: string;
-  inputOptions: Array<any>;
-  outputOptions: Array<any>;
-  operatorOptions: Array<any>;
 
   constructor() {
-    this.conditions = [new Condition()];
-    this.missingText = 'Not set';
-
-    this.inputOptions = [
-    {value: 1, text: 'State'},
-    {value: 2, text:  'Revenue'},
-    {value: 3, text:  'Industry'}
-    ]; 
-
-    this.outputOptions = [
-    {value: 1, text: 'Decision'},
-    {value: 2, text:  'Assignee'}
-    ]; 
-
-    this.operatorOptions = [
-    {value: '='},
-    {value: '>'},
-    {value: '<' },
-    {value: 'between'},
-    {value: '>='},
-    {value: '<='},
-    {value: '!='},
-    {value: 'in'},
-    {value: '!in'}
-    ]; 
-
+      this.rule = new Rule();
   }
 
   toggleEdit(index) {
-    this.conditions[index].editing = !this.conditions[index].editing;
-  }
-
-  showInput(value) {
-    var selected = [];
-    if(value) {
-      selected = this.inputOptions.filter(function(d) {return d.value === value;})
-    }
-    return selected.length ? selected[0].text : this.missingText;
+    this.rule.conditions[index].editing = !this.rule.conditions[index].editing;
   }
 
   removeCondition(index){
-    this.conditions.splice(index,1);
+    this.rule.conditions.splice(index,1);
   }
 
   addCondition() { 
-    this.conditions.push(new Condition());
-  }
-
-  saveCondition(index) {
-
+    this.rule.conditions.push(new Condition());
   }
 
   updateValue(index,event) {
     let name = event.srcElement.name;
     let value = event.srcElement.value;
 
-    if (name === "input") {
-      value = Number(event.srcElement.value);
-    }
-
-    this.conditions[index][name] = value;
+    this.rule.conditions[index][name] = value;
   }
 
 }

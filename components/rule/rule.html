@@ -1,0 +1,107 @@
+
+<div class="panel panel-info">
+  <div class="panel-heading">Rule Title</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-8">
+        <table class="table table-bordered table-hover table-condensed">
+          <thead>
+            <tr>
+              <td>Input</td>
+              <td>Operator</td>
+              <td>Value(s)</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ng-for="#condition of rule.conditions; #i=index" style="margin-bottom: 10px;">
+              <!-- Input -->
+              <td>
+                <span [hidden]="condition.editing">
+                  {{condition.input || missingText }}
+                </span>
+                <span [hidden]="!condition.editing">
+                  <select class="form-control" name="input" (change)="updateValue(i,$event)">
+                    <option *ng-for="#inputOption of rule.inputs" value="{{inputOption}}" selected="{{condition.input === inputOption ? 'selected' : ''}}">{{inputOption}}</option>
+                  </select>
+                </span>
+              </td>
+              <!-- Operator -->
+              <td>
+                <span [hidden]="condition.editing">
+                  {{ condition.operator || missingText }}
+                </span>
+                <span [hidden]="!condition.editing">
+                  <select class="form-control" name="operator" (change)="updateValue(i,$event)">
+                    <option *ng-for="#operatorOption of rule.operators" value="{{operatorOption}}" selected="{{condition.operator === operatorOption ? 'selected' : ''}}">{{operatorOption}}</option>
+                  </select>
+                </span>
+              </td>
+              <!-- Value(s) -->
+              <td>
+                <span [hidden]="condition.editing">
+                  {{ condition.values || missingText }}
+                </span>
+                <span [hidden]="!condition.editing">
+                  <input name="values" (change)="updateValue(i,$event)"/>
+                </span>
+              </td>
+              <!-- Controls -->
+              <td>
+                <div class="buttons" [hidden]="condition.editing">
+                  <button class="btn btn-primary" (click)="toggleEdit(i)">Edit</button>
+                  <button class="btn btn-danger" (click)="removeCondition(i)">X</button>
+                </div>  
+                <div class="buttons" [hidden]="!condition.editing">
+                  <button class="btn btn-primary" (click)="toggleEdit(i)">
+                    Done
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="btn btn-default" (click)="addCondition()">Add row</button>
+
+
+      </div>
+
+      <div class="col-xs-3">
+        <table class="table table-bordered table-hover table-condensed">
+          <thead>
+            <tr>
+              <td>Output</td>
+              <td></td>
+              <td>Value</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ng-for="#output of rule.outputs; #i=index" style="margin-bottom: 10px;">
+              <!-- Output -->
+              <td>
+                <span>
+                  <select class="form-control" name="output" (change)="updateValue(i,$event)">
+                    <option *ng-for="#outputOption of rule.outputs" value="{{outputOption}}" selected="{{output === outputOption ? 'selected' : ''}}">{{outputOption}}</option>
+                  </select>
+                </span>
+              </td>
+              <!-- = -->
+              <td>
+                <span>
+                  =
+                </span>
+              </td>       
+              <!-- Value(s) -->
+              <td>
+                <span>
+                  <input name="values" (change)="updateValue(i,$event)"/>
+                </span>
+              </td>       
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

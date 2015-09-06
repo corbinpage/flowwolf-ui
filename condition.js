@@ -1,9 +1,9 @@
 var Condition = (function () {
     function Condition() {
         this.id = -1;
-        this.input = 1;
+        this.input = "State";
         this.operator = '=';
-        this.editing = false;
+        this.values = "NC";
     }
     return Condition;
 })();

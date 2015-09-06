@@ -1,16 +1,15 @@
 export class Condition{
 
   id: number;
-  input: number;
+  input: string;
   operator: string;
   values: any;
-  output: any;
   editing: boolean
 
   constructor() {
     this.id = -1;
-    this.input = 1;
+    this.input = "State";
     this.operator = '=';
-    this.editing = false;
+    this.values = "NC";
   }
 }

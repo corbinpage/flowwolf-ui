@@ -12,64 +12,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 /// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
 var condition_1 = require('condition');
+var Rule = (function () {
+    function Rule() {
+        this.id = -1;
+        this.inputs = ['State', 'Revenue', 'Industry'];
+        this.operators = ['=', '>', '<', 'between', '>=', '<=', '!=', 'in', '!in'];
+        this.outputs = ['Decision', 'Assignee'];
+        this.conditions = [new condition_1.Condition(), new condition_1.Condition(), new condition_1.Condition()];
+    }
+    return Rule;
+})();
+exports.Rule = Rule;
 //TypeScript
 var RuleComponent = (function () {
     function RuleComponent() {
-        this.conditions = [new condition_1.Condition()];
-        this.missingText = 'Not set';
-        this.inputOptions = [
-            { value: 1, text: 'State' },
-            { value: 2, text: 'Revenue' },
-            { value: 3, text: 'Industry' }
-        ];
-        this.outputOptions = [
-            { value: 1, text: 'Decision' },
-            { value: 2, text: 'Assignee' }
-        ];
-        this.operatorOptions = [
-            { value: '=' },
-            { value: '>' },
-            { value: '<' },
-            { value: 'between' },
-            { value: '>=' },
-            { value: '<=' },
-            { value: '!=' },
-            { value: 'in' },
-            { value: '!in' }
-        ];
+        this.rule = new Rule();
     }
     RuleComponent.prototype.toggleEdit = function (index) {
-        this.conditions[index].editing = !this.conditions[index].editing;
-    };
-    RuleComponent.prototype.showInput = function (value) {
-        var selected = [];
-        if (value) {
-            selected = this.inputOptions.filter(function (d) { return d.value === value; });
-        }
-        return selected.length ? selected[0].text : this.missingText;
+        this.rule.conditions[index].editing = !this.rule.conditions[index].editing;
     };
     RuleComponent.prototype.removeCondition = function (index) {
-        this.conditions.splice(index, 1);
+        this.rule.conditions.splice(index, 1);
     };
     RuleComponent.prototype.addCondition = function () {
-        this.conditions.push(new condition_1.Condition());
-    };
-    RuleComponent.prototype.saveCondition = function (index) {
+        this.rule.conditions.push(new condition_1.Condition());
     };
     RuleComponent.prototype.updateValue = function (index, event) {
         var name = event.srcElement.name;
         var value = event.srcElement.value;
-        if (name === "input") {
-            value = Number(event.srcElement.value);
-        }
-        this.conditions[index][name] = value;
+        this.rule.conditions[index][name] = value;
     };
     RuleComponent = __decorate([
         angular2_1.Component({
             selector: 'my-rule'
         }),
         angular2_1.View({
-            templateUrl: 'views/rule.html',
+            templateUrl: 'components/rule/rule.html',
             directives: [angular2_1.NgFor, angular2_1.NgIf]
         }), 
         __metadata('design:paramtypes', [])
