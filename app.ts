@@ -1,6 +1,6 @@
 /// <reference path="typings/angular2/angular2.d.ts" />
 import {Component, View, bootstrap, NgFor, NgIf} from 'angular2/angular2';
-import {GridComponent} from 'grid'
+import {RuleComponent} from 'rule'
 
 // Annotation section
 @Component({
@@ -9,7 +9,7 @@ import {GridComponent} from 'grid'
 })
 @View({
   templateUrl: 'views/app.html',
-  directives: [NgFor, NgIf, GridComponent]
+  directives: [NgFor, NgIf, RuleComponent]
 })
 
 // Component controller
@@ -19,17 +19,6 @@ class MyAppComponent {
   constructor(friendsService: FriendsService) {
     this.title = 'Cloud Decision Table';
   }
-
-  // addTodo(todo: string) {
-  //   this.todos.push(todo);
-  // }
-
-  // doneTyping($event) {
-  //   if($event.which === 13) {
-  //     this.addTodo($event.target.value);
-  //     $event.target.value = null;
-  //   }
-  // }
 
 } 
 

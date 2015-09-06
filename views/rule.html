@@ -1,0 +1,75 @@
+<h2>Conditions</h2>
+<div>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <td>Input</td>
+        <td>Operator</td>
+        <td>Value(s)</td>
+        <td>Output</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ng-for="#condition of conditions; #i=index" style="margin-bottom: 10px;">
+        <!-- Input -->
+        <td>
+          <span [hidden]="condition.editing">
+            {{showInput(condition.input) || missingText }}
+          </span>
+          <span [hidden]="!condition.editing">
+            <select class="form-control" name="input" (change)="updateValue(i,$event)">
+              <option *ng-for="#inputOption of inputOptions" value="{{inputOption.value}}" selected="{{condition.input === inputOption.value ? 'selected' : ''}}">{{inputOption.text}}</option>
+            </select>
+          </span>
+        </td>
+        <!-- Operator -->
+        <td>
+          <span [hidden]="condition.editing">
+            {{ condition.operator || missingText }}
+          </span>
+          <span [hidden]="!condition.editing">
+            <select class="form-control" name="operator" (change)="updateValue(i,$event)">
+              <option *ng-for="#operatorOption of operatorOptions" value="{{operatorOption.value}}" selected="{{condition.operator === operatorOption.value ? 'selected' : ''}}">{{operatorOption.value}}</option>
+            </select>
+          </span>
+        </td>
+        <!-- Value(s) -->
+        <td>
+          <span [hidden]="condition.editing">
+            {{ condition.values || missingText }}
+          </span>
+          <span [hidden]="!condition.editing">
+            <input name="values" (change)="updateValue(i,$event)"/>
+          </span>
+        </td>
+        <!-- Output -->
+        <td>
+          <span [hidden]="condition.editing">
+            {{ condition.output || missingText }}
+          </span>
+          <span [hidden]="!condition.editing">
+            <select class="form-control" name="output" (change)="updateValue(i,$event)">
+              <option *ng-for="#outputOption of outputOptions" value="{{outputOption.value}}" selected="{{condition.output === outputOption.value ? 'selected' : ''}}">{{outputOption.text}}</option>
+            </select>
+          </span>
+        </td>
+        <!-- Controls -->
+        <td>
+          <div class="buttons" [hidden]="condition.editing">
+            <button class="btn btn-primary" (click)="toggleEdit(i)">Edit</button>
+            <button class="btn btn-danger" (click)="removeCondition(i)">X</button>
+          </div>  
+          <div class="buttons" [hidden]="!condition.editing">
+            <button class="btn btn-primary" (click)="toggleEdit(i)">
+              Done
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-default" (click)="addCondition()">Add row</button>
+
+</div>

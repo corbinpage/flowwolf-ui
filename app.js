@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 /// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
-var grid_1 = require('grid');
+var rule_1 = require('rule');
 // Annotation section
 var MyAppComponent = (function () {
     function MyAppComponent(friendsService) {
@@ -24,7 +24,7 @@ var MyAppComponent = (function () {
         }),
         angular2_1.View({
             templateUrl: 'views/app.html',
-            directives: [angular2_1.NgFor, angular2_1.NgIf, grid_1.GridComponent]
+            directives: [angular2_1.NgFor, angular2_1.NgIf, rule_1.RuleComponent]
         }), 
         __metadata('design:paramtypes', [FriendsService])
     ], MyAppComponent);
