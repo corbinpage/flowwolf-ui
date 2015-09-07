@@ -8,17 +8,19 @@ export class Rule{
   inputs: Array<string>;
   conditions: Array<Condition>;
   operators: Array<string>;
-  outputs: Array<string>;
+  outputs: Array<any>;
+  editing: boolean;
+  outputOptions: Array<string>;
 
   constructor() {
     this.id = -1;
+    this.editing = false;
     this.inputs = ['State','Revenue','Industry'];
     this.operators = ['=','>','<','between','>=','<=','!=','in','!in'];
-    this.outputs = ['Decision','Assignee'];
+    this.outputs = [{output: "Decision", value: "Yes"}, {output: "Assignee", value: "CEO"}];
     this.conditions = [new Condition(), new Condition(), new Condition()];
   }
-} 
-
+}
 
 //TypeScript
 @Component({
@@ -36,10 +38,13 @@ export class RuleComponent {
 
   constructor() {
       this.rule = new Rule();
+      this.missingText = "Not set"; 
+
+      this.outputOptions = ["Decision", "Assignee", "Fire?"];
   }
 
-  toggleEdit(index) {
-    this.rule.conditions[index].editing = !this.rule.conditions[index].editing;
+  toggleEdit() {
+    this.rule.editing = !this.rule.editing;
   }
 
   removeCondition(index){
@@ -50,11 +55,18 @@ export class RuleComponent {
     this.rule.conditions.push(new Condition());
   }
 
-  updateValue(index,event) {
+  updateInputValue(index,event) {
     let name = event.srcElement.name;
     let value = event.srcElement.value;
 
     this.rule.conditions[index][name] = value;
+  }
+
+  updateOutputValue(index,event) {
+    let name = event.srcElement.name;
+    let value = event.srcElement.value;
+
+    this.rule.outputs[index][name] = value;
   }
 
 }

@@ -15,9 +15,10 @@ var condition_1 = require('condition');
 var Rule = (function () {
     function Rule() {
         this.id = -1;
+        this.editing = false;
         this.inputs = ['State', 'Revenue', 'Industry'];
         this.operators = ['=', '>', '<', 'between', '>=', '<=', '!=', 'in', '!in'];
-        this.outputs = ['Decision', 'Assignee'];
+        this.outputs = [{ output: "Decision", value: "Yes" }, { output: "Assignee", value: "CEO" }];
         this.conditions = [new condition_1.Condition(), new condition_1.Condition(), new condition_1.Condition()];
     }
     return Rule;
@@ -27,9 +28,11 @@ exports.Rule = Rule;
 var RuleComponent = (function () {
     function RuleComponent() {
         this.rule = new Rule();
+        this.missingText = "Not set";
+        this.outputOptions = ["Decision", "Assignee", "Fire?"];
     }
-    RuleComponent.prototype.toggleEdit = function (index) {
-        this.rule.conditions[index].editing = !this.rule.conditions[index].editing;
+    RuleComponent.prototype.toggleEdit = function () {
+        this.rule.editing = !this.rule.editing;
     };
     RuleComponent.prototype.removeCondition = function (index) {
         this.rule.conditions.splice(index, 1);
@@ -37,10 +40,15 @@ var RuleComponent = (function () {
     RuleComponent.prototype.addCondition = function () {
         this.rule.conditions.push(new condition_1.Condition());
     };
-    RuleComponent.prototype.updateValue = function (index, event) {
+    RuleComponent.prototype.updateInputValue = function (index, event) {
         var name = event.srcElement.name;
         var value = event.srcElement.value;
         this.rule.conditions[index][name] = value;
+    };
+    RuleComponent.prototype.updateOutputValue = function (index, event) {
+        var name = event.srcElement.name;
+        var value = event.srcElement.value;
+        this.rule.outputs[index][name] = value;
     };
     RuleComponent = __decorate([
         angular2_1.Component({
