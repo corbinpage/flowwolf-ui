@@ -40,6 +40,9 @@ var RuleComponent = (function () {
     RuleComponent.prototype.addCondition = function () {
         this.rule.conditions.push(new condition_1.Condition());
     };
+    RuleComponent.prototype.addOutput = function () {
+        this.rule.outputs.push({ output: "", value: "" });
+    };
     RuleComponent.prototype.updateInputValue = function (index, event) {
         var name = event.srcElement.name;
         var value = event.srcElement.value;

@@ -55,6 +55,10 @@ export class RuleComponent {
     this.rule.conditions.push(new Condition());
   }
 
+  addOutput() { 
+    this.rule.outputs.push({output: "", value: "" });
+  }
+
   updateInputValue(index,event) {
     let name = event.srcElement.name;
     let value = event.srcElement.value;
