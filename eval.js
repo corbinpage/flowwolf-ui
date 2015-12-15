@@ -9,8 +9,6 @@
 // input: score
 // value: 1
 
-var json = require("JSON");
-
 var conditionalOperators = ["AND", "OR"];
 var scalarOperators = ["===", ">", "<", ">=", "<=", "!=", "is null", "is not null"];
 var groupOperators = ["in", "not in"];
