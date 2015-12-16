@@ -1,22 +1,22 @@
-<!-- index.html -->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Angular 2 Quickstart</title>
-    <script src="https://github.jspm.io/jmcriffey/bower-traceur-runtime@0.0.87/traceur-runtime.js"></script>
-    <script src="https://jspm.io/system@0.16.js"></script>
-    <script src="https://code.angularjs.org/2.0.0-alpha.28/angular2.dev.js"></script>
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- <script src="node_modules/bootstrap-4.0.0-alpha/dist/js/bootstrap.js"></script> -->
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
-    <!-- <link href="node_modules/bootstrap-4.0.0-alpha/dist/css/bootstrap.css"/> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
-    <link href="style.css" rel="stylesheet"/>
-  </head>
-  <body>
-    <my-app></my-app>
-    <script>System.import('friendsService');</script>
-    <script>System.import('app');</script>
-  </body>
+<head>
+  <base href="/">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="/node_modules/es6-shim/es6-shim.min.js"></script>
+  <script src="/node_modules/systemjs/dist/system.src.js"></script>
+  <script src="/node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
+  <script src="/node_modules/angular2/bundles/router.dev.js"></script>
+  <script>
+    System.config({packages: {'app': {defaultExtension: 'js'}}});
+    System.import('app/boot').catch(console.log.bind(console));
+  </script>
+</head>
+
+<body>
+  <my-app>Loading...</my-app>
+</body>
 </html>
