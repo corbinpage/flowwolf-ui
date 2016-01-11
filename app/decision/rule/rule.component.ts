@@ -1,6 +1,5 @@
-/// <reference path="typings/angular2/angular2.d.ts" />
-import {Component, View, NgFor, NgIf} from 'angular2/angular2';
-import {Condition} from 'condition';
+import {Component} from 'angular2/core';
+import {Condition} from './condition';
 
 export class Rule{
 
