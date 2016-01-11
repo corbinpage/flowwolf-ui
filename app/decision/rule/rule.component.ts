@@ -1,34 +1,10 @@
-import {Component} from 'angular2/core';
-import {Condition} from './condition';
+import {Component, OnInit} from 'angular2/core';
+import {Rule} from './rule';
+import {Condition} from '../condition/condition';
 
-export class Rule{
-
-  id: number;
-  inputs: Array<string>;
-  conditions: Array<Condition>;
-  operators: Array<string>;
-  outputs: Array<any>;
-  editing: boolean;
-  outputOptions: Array<string>;
-
-  constructor() {
-    this.id = -1;
-    this.editing = false;
-    this.inputs = ['State','Revenue','Industry'];
-    this.operators = ['=','>','<','between','>=','<=','!=','in','!in'];
-    this.outputs = [{output: "Decision", value: "Yes"}, {output: "Assignee", value: "CEO"}];
-    this.conditions = [new Condition(), new Condition(), new Condition()];
-  }
-}
-
-//TypeScript
 @Component({
-  selector: 'my-rule'
-})
-
-@View({
-  templateUrl: 'components/rule/rule.html',
-  directives: [NgFor, NgIf]
+  selector: 'my-rule',
+  templateUrl: 'app/decision/rule/rule.component.html'
 })
 
 export class RuleComponent {
@@ -39,7 +15,7 @@ export class RuleComponent {
       this.rule = new Rule();
       this.missingText = "Not set"; 
 
-      this.outputOptions = ["Decision", "Assignee", "Fire?"];
+      this.rule.outputOptions = ["Decision", "Assignee", "Fire?"];
   }
 
   toggleEdit() {

@@ -1,4 +1,3 @@
-
 <div class="panel panel-info">
   <div class="panel-heading">Rule Title</div>
   <div class="panel-body">
@@ -7,14 +6,14 @@
         <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
-              <td><strong>Input<strong></td>
+              <td><strong>Input</strong></td>
               <td>Operator</td>
               <td>Value(s)</td>
               <td [hidden]="!rule.editing"></td>
             </tr>
           </thead>
           <tbody>
-            <tr *ng-for="#condition of rule.conditions; #i=index" style="margin-bottom: 10px;">
+            <tr *ngFor="#condition of rule.conditions; #i=index" style="margin-bottom: 10px;">
               <!-- Input -->
               <td>
                 <span [hidden]="rule.editing">
@@ -22,7 +21,7 @@
                 </span>
                 <span [hidden]="!rule.editing">
                   <select class="form-control" name="input" (change)="updateInputValue(i,$event)">
-                    <option *ng-for="#inputOption of rule.inputs" value="{{inputOption}}" selected="{{condition.input === inputOption ? 'selected' : ''}}">{{inputOption}}</option>
+                    <option *ngFor="#inputOption of rule.inputs" value="{{inputOption}}" selected="{{condition.input === inputOption ? 'selected' : ''}}">{{inputOption}}</option>
                   </select>
                 </span>
               </td>
@@ -33,7 +32,7 @@
                 </span>
                 <span [hidden]="!rule.editing">
                   <select class="form-control" name="operator" (change)="updateInputValue(i,$event)">
-                    <option *ng-for="#operatorOption of rule.operators" value="{{operatorOption}}" selected="{{condition.operator === operatorOption ? 'selected' : ''}}">{{operatorOption}}</option>
+                    <option *ngFor="#operatorOption of rule.operators" value="{{operatorOption}}" selected="{{condition.operator === operatorOption ? 'selected' : ''}}">{{operatorOption}}</option>
                   </select>
                 </span>
               </td>
@@ -70,13 +69,13 @@
         <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
-              <td><strong>Output<strong></td>
+              <td><strong>Output</strong></td>
               <td></td>
               <td>Value</td>
             </tr>
           </thead>
           <tbody>
-            <tr *ng-for="#output of rule.outputs; #i=index" style="margin-bottom: 10px;">
+            <tr *ngFor="#output of rule.outputs; #i=index" style="margin-bottom: 10px;">
               <!-- Output -->
               <td>
                 <span [hidden]="rule.editing">
@@ -84,7 +83,7 @@
                 </span>
                 <span [hidden]="!rule.editing">
                   <select class="form-control" name="output" (change)="updateOutputValue(i,$event)">
-                    <option *ng-for="#outputOption of outputOptions" value="{{outputOption}}" selected="{{output.output === outputOption ? 'selected' : ''}}">{{outputOption}}</option>
+                    <option *ngFor="#outputOption of outputOptions" value="{{outputOption}}" selected="{{output.output === outputOption ? 'selected' : ''}}">{{outputOption}}</option>
                   </select>
                 </span>
               </td>

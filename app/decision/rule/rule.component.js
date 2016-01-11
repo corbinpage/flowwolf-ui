@@ -1,4 +1,4 @@
-System.register(['angular2/core', './condition'], function(exports_1) {
+System.register(['angular2/core', './rule', '../condition/condition'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,35 +8,25 @@ System.register(['angular2/core', './condition'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, condition_1;
-    var Rule, RuleComponent;
+    var core_1, rule_1, condition_1;
+    var RuleComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (rule_1_1) {
+                rule_1 = rule_1_1;
+            },
             function (condition_1_1) {
                 condition_1 = condition_1_1;
             }],
         execute: function() {
-            Rule = (function () {
-                function Rule() {
-                    this.id = -1;
-                    this.editing = false;
-                    this.inputs = ['State', 'Revenue', 'Industry'];
-                    this.operators = ['=', '>', '<', 'between', '>=', '<=', '!=', 'in', '!in'];
-                    this.outputs = [{ output: "Decision", value: "Yes" }, { output: "Assignee", value: "CEO" }];
-                    this.conditions = [new condition_1.Condition(), new condition_1.Condition(), new condition_1.Condition()];
-                }
-                return Rule;
-            })();
-            exports_1("Rule", Rule);
-            //TypeScript
             RuleComponent = (function () {
                 function RuleComponent() {
-                    this.rule = new Rule();
+                    this.rule = new rule_1.Rule();
                     this.missingText = "Not set";
-                    this.outputOptions = ["Decision", "Assignee", "Fire?"];
+                    this.rule.outputOptions = ["Decision", "Assignee", "Fire?"];
                 }
                 RuleComponent.prototype.toggleEdit = function () {
                     this.rule.editing = !this.rule.editing;
@@ -62,11 +52,8 @@ System.register(['angular2/core', './condition'], function(exports_1) {
                 };
                 RuleComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-rule'
-                    }),
-                    View({
-                        templateUrl: 'components/rule/rule.html',
-                        directives: [NgFor, NgIf]
+                        selector: 'my-rule',
+                        templateUrl: 'app/decision/rule/rule.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], RuleComponent);
