@@ -38,7 +38,7 @@ System.register(['angular2/core', 'angular2/router', './rule/rule', './rule/rule
                 DecisionComponent = __decorate([
                     core_1.Component({
                         selector: 'my-decision',
-                        templateUrl: 'app/decision/decision.component.html',
+                        templateUrl: 'app/components/decision/decision.component.html',
                         directives: [rule_component_1.RuleComponent]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router])

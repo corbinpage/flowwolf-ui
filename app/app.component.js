@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './heroes.component', './hero-detail.component', './dashboard.component', './decision/decision.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './heroes.component', './hero-detail.component', './dashboard.component', './components/decision/decision.dashboard', './components/decision/decision.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, heroes_component_1, hero_detail_component_1, dashboard_component_1, decision_component_1;
+    var core_1, router_1, heroes_component_1, hero_detail_component_1, dashboard_component_1, decision_dashboard_1, decision_component_1;
     var AppComponent;
     return {
         setters:[
@@ -27,6 +27,9 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
             function (dashboard_component_1_1) {
                 dashboard_component_1 = dashboard_component_1_1;
             },
+            function (decision_dashboard_1_1) {
+                decision_dashboard_1 = decision_dashboard_1_1;
+            },
             function (decision_component_1_1) {
                 decision_component_1 = decision_component_1_1;
             }],
@@ -38,15 +41,16 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>\n    <a [routerLink]=\"['Decisions']\">Decisions</a>\n    <router-outlet></router-outlet>\n  ",
+                        template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n    <span> | </span>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>\n    <span> | </span>\n    <a [routerLink]=\"['DecisionDashboard']\">Decisions</a>\n    <router-outlet></router-outlet>\n  ",
                         styles: ["\n    a:visited, a:link {color: #444;}\n    a:hover {color: white; background-color: #1171a3;}\n    a.router-link-active {color: white; background-color: #52b9e9;}\n  "],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
                         { path: '/dashboard', name: 'Dashboard', component: dashboard_component_1.DashboardComponent, useAsDefault: true },
-                        { path: '/decisions', name: 'Decisions', component: decision_component_1.DecisionComponent },
+                        { path: '/decisions', name: 'DecisionDashboard', component: decision_dashboard_1.DecisionDashboard },
                         { path: '/heroes', name: 'Heroes', component: heroes_component_1.HeroesComponent },
-                        { path: '/detail/:id', name: 'HeroDetail', component: hero_detail_component_1.HeroDetailComponent }
+                        { path: '/detail/:id', name: 'HeroDetail', component: hero_detail_component_1.HeroDetailComponent },
+                        { path: '/decisionDetails', name: 'DecisionComponent', component: decision_component_1.DecisionComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

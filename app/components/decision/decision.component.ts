@@ -5,7 +5,7 @@ import {RuleComponent} from './rule/rule.component';
 
 @Component({
 	selector: 'my-decision',
-	templateUrl: 'app/decision/decision.component.html',
+	templateUrl: 'app/components/decision/decision.component.html',
 	directives: [RuleComponent]
 })
 

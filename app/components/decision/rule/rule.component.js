@@ -30,30 +30,36 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
                 }
                 RuleComponent.prototype.toggleEdit = function () {
                     this.rule.editing = !this.rule.editing;
+                    return false;
                 };
                 RuleComponent.prototype.removeCondition = function (index) {
                     this.rule.conditions.splice(index, 1);
+                    return false;
                 };
                 RuleComponent.prototype.addCondition = function () {
                     this.rule.conditions.push(new condition_1.Condition());
+                    return false;
                 };
                 RuleComponent.prototype.addOutput = function () {
                     this.rule.outputs.push({ output: "", value: "" });
+                    return false;
                 };
                 RuleComponent.prototype.updateInputValue = function (index, event) {
                     var name = event.srcElement.name;
                     var value = event.srcElement.value;
                     this.rule.conditions[index][name] = value;
+                    return false;
                 };
                 RuleComponent.prototype.updateOutputValue = function (index, event) {
                     var name = event.srcElement.name;
                     var value = event.srcElement.value;
                     this.rule.outputs[index][name] = value;
+                    return false;
                 };
                 RuleComponent = __decorate([
                     core_1.Component({
                         selector: 'my-rule',
-                        templateUrl: 'app/decision/rule/rule.component.html'
+                        templateUrl: 'app/components/decision/rule/rule.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], RuleComponent);
