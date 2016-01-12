@@ -24,7 +24,6 @@ export class DecisionDashboard implements OnInit {
   }
 
   gotoDetail(decision: Decision) {
-    // this._router.navigate(['DecisionComponent', { id: decision.id }]);
-    this._router.navigate(['DecisionComponent']);
+    this._router.navigate(['DecisionComponent', { id: 1 }]);
   }
 }

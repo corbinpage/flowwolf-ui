@@ -33,8 +33,7 @@ System.register(['angular2/core', 'angular2/router', './decision.service'], func
                     this._decisionService.getDecisions().then(function (decisions) { return _this.decisions = decisions; });
                 };
                 DecisionDashboard.prototype.gotoDetail = function (decision) {
-                    // this._router.navigate(['DecisionComponent', { id: decision.id }]);
-                    this._router.navigate(['DecisionComponent']);
+                    this._router.navigate(['DecisionComponent', { id: 1 }]);
                 };
                 DecisionDashboard = __decorate([
                     core_1.Component({

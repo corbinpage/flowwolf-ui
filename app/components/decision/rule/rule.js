@@ -9,7 +9,7 @@ System.register(['../condition/condition'], function(exports_1) {
         execute: function() {
             Rule = (function () {
                 function Rule() {
-                    this.id = -1;
+                    this.id = this.id ? this.id : -1;
                     this.editing = false;
                     this.inputs = ['State', 'Revenue', 'Industry'];
                     this.operators = ['=', '>', '<', 'between', '>=', '<=', '!=', 'in', '!in'];

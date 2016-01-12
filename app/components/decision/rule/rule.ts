@@ -11,7 +11,7 @@ export class Rule {
 	outputOptions: Array<string>;
 
 	constructor() {
-		this.id = -1;
+		this.id = this.id ? this.id : -1;
 		this.editing = false;
 		this.inputs = ['State', 'Revenue', 'Industry'];
 		this.operators = ['=', '>', '<', 'between', '>=', '<=', '!=', 'in', '!in'];

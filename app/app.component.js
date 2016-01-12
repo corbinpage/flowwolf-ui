@@ -36,21 +36,21 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.title = 'Tour of Heroes';
+                    this.title = 'Flowwolf UI';
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n    <span> | </span>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>\n    <span> | </span>\n    <a [routerLink]=\"['DecisionDashboard']\">Decisions</a>\n    <router-outlet></router-outlet>\n  ",
+                        template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['DecisionDashboard', {id: '1' } ]\">Decisions</a>\n    <span> | </span>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>\n    <span> | </span>\n    <a [routerLink]=\"['Dashboard']\">HeroDash</a>\n    <router-outlet></router-outlet>\n  ",
                         styles: ["\n    a:visited, a:link {color: #444;}\n    a:hover {color: white; background-color: #1171a3;}\n    a.router-link-active {color: white; background-color: #52b9e9;}\n  "],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
-                        { path: '/dashboard', name: 'Dashboard', component: dashboard_component_1.DashboardComponent, useAsDefault: true },
-                        { path: '/decisions', name: 'DecisionDashboard', component: decision_dashboard_1.DecisionDashboard },
+                        { path: '/decisions', name: 'DecisionDashboard', component: decision_dashboard_1.DecisionDashboard, useAsDefault: true },
+                        { path: '/decisions/:id', name: 'DecisionComponent', component: decision_component_1.DecisionComponent },
                         { path: '/heroes', name: 'Heroes', component: heroes_component_1.HeroesComponent },
+                        { path: '/dashboard', name: 'Dashboard', component: dashboard_component_1.DashboardComponent },
                         { path: '/detail/:id', name: 'HeroDetail', component: hero_detail_component_1.HeroDetailComponent },
-                        { path: '/decisionDetails', name: 'DecisionComponent', component: decision_component_1.DecisionComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

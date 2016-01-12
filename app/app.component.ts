@@ -10,11 +10,11 @@ import {DecisionComponent} from './components/decision/decision.component';
   selector: 'my-app',
   template: `
     <h1>{{title}}</h1>
-    <a [routerLink]="['Dashboard']">Dashboard</a>
+    <a [routerLink]="['DecisionDashboard', {id: '1' } ]">Decisions</a>
     <span> | </span>
     <a [routerLink]="['Heroes']">Heroes</a>
     <span> | </span>
-    <a [routerLink]="['DecisionDashboard']">Decisions</a>
+    <a [routerLink]="['Dashboard']">HeroDash</a>
     <router-outlet></router-outlet>
   `,
   styles: [`
@@ -25,13 +25,14 @@ import {DecisionComponent} from './components/decision/decision.component';
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  {path: '/dashboard', name: 'Dashboard', component: DashboardComponent, useAsDefault: true},
-  {path: '/decisions', name: 'DecisionDashboard', component: DecisionDashboard},
+  {path: '/decisions', name: 'DecisionDashboard', component: DecisionDashboard, useAsDefault: true},
+  {path: '/decisions/:id', name: 'DecisionComponent', component: DecisionComponent},
   {path: '/heroes', name: 'Heroes', component: HeroesComponent},
+  {path: '/dashboard', name: 'Dashboard', component: DashboardComponent},
   {path: '/detail/:id', name: 'HeroDetail', component: HeroDetailComponent},
-  {path: '/decisionDetails', name: 'DecisionComponent', component: DecisionComponent}
+
 ])
 
 export class AppComponent {
-  public title = 'Tour of Heroes';
+  public title = 'Flowwolf UI';
 }

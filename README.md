@@ -11,3 +11,5 @@ TBD
 // references: {conditions}
 // input: score
 // value: 1
+
+http://antjanus.com/blog/tutorials/the-beginners-preemptive-guide-to-angularjs-2-alpha/
