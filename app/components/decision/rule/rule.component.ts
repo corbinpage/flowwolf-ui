@@ -4,7 +4,9 @@ import {Condition} from '../condition/condition';
 
 @Component({
   selector: 'my-rule',
-  templateUrl: 'app/components/decision/rule/rule.component.html'
+  templateUrl: 'app/components/decision/rule/rule.component.html',
+  inputs: ['rule'],
+  bindings: [Rule]
 })
 
 export class RuleComponent {
@@ -14,8 +16,6 @@ export class RuleComponent {
   constructor() {
     this.rule = new Rule();
     this.missingText = "Not set"; 
-
-    this.rule.outputOptions = ["Decision", "Assignee", "Fire?"];
   }
 
   toggleEdit() {

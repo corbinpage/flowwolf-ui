@@ -9,30 +9,31 @@ import {DecisionService} from './decision.service';
 	selector: 'my-decision',
 	templateUrl: 'app/components/decision/decision.component.html',
 	directives: [RuleComponent],
-	bindings: [DecisionService],
-	inputs: ['decision']
+	bindings: [DecisionService]
 })
 
-export class DecisionComponent implements OnInit {
+export class DecisionComponent implements OnInit{
 	public decision: Decision;
 	public title: string;
 	public rule: Rule;
 
 	constructor(private _decisionService: DecisionService, 
 		private _routeParams: RouteParams) {
+		this.decision = { "id": 2, "name": "Beta" };
+		this.title = this.decision.name;
 	}
 
 	ngOnInit() {
-		if (!this.decision) {
-			let id = +this._routeParams.get('id');
-			this._decisionService.getDecision(1).then(function(decision) {
-				this.decision = decision;
-				this.title = this.decision.name;
-			});
-		} else {
-			this.title = this.decision.name;
-		}
-		this.rule = new Rule();
+	// 	if (!this.decision) {
+	// 		this.decision = new Decision({ "id": 2, "name": "Beta" });
+			// let id = +this._routeParams.get('id');
+			// this._decisionService.getDecision(1).then(function(decision) {
+				// this.decision = decision;
+				// this.title = this.decision.name;
+			// });
+		// } 
+
+	// 	this.title = this.decision.name;
 	}
 
 	// gotoDetail(hero: Hero) {

@@ -17,5 +17,6 @@ export class Rule {
 		this.operators = ['=', '>', '<', 'between', '>=', '<=', '!=', 'in', '!in'];
 		this.outputs = [{ output: "Decision", value: "Yes" }, { output: "Assignee", value: "CEO" }];
 		this.conditions = [new Condition(), new Condition(), new Condition()];
+		this.outputOptions = ["Decision", "Assignee", "Fire?"];
 	}
 }

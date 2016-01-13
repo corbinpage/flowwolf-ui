@@ -15,6 +15,7 @@ System.register(['../condition/condition'], function(exports_1) {
                     this.operators = ['=', '>', '<', 'between', '>=', '<=', '!=', 'in', '!in'];
                     this.outputs = [{ output: "Decision", value: "Yes" }, { output: "Assignee", value: "CEO" }];
                     this.conditions = [new condition_1.Condition(), new condition_1.Condition(), new condition_1.Condition()];
+                    this.outputOptions = ["Decision", "Assignee", "Fire?"];
                 }
                 return Rule;
             })();

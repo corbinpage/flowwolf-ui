@@ -26,7 +26,6 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
                 function RuleComponent() {
                     this.rule = new rule_1.Rule();
                     this.missingText = "Not set";
-                    this.rule.outputOptions = ["Decision", "Assignee", "Fire?"];
                 }
                 RuleComponent.prototype.toggleEdit = function () {
                     this.rule.editing = !this.rule.editing;
@@ -59,7 +58,9 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
                 RuleComponent = __decorate([
                     core_1.Component({
                         selector: 'my-rule',
-                        templateUrl: 'app/components/decision/rule/rule.component.html'
+                        templateUrl: 'app/components/decision/rule/rule.component.html',
+                        inputs: ['rule'],
+                        bindings: [rule_1.Rule]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], RuleComponent);
