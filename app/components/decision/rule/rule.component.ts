@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Inject} from 'angular2/core';
 import {Rule} from './rule';
 import {Condition} from '../condition/condition';
 
@@ -11,10 +11,12 @@ import {Condition} from '../condition/condition';
 
 export class RuleComponent {
   rule: Rule;
+  name: string;
   missingText: string;
 
-  constructor() {
-    this.rule = new Rule();
+  constructor(@Inject(Rule) rule: Rule) {
+    this.rule = rule;
+    this.name = this.rule.name;
     this.missingText = "Not set"; 
   }
 
@@ -33,12 +35,28 @@ export class RuleComponent {
     return false;
   }
 
-  addOutput() { 
-    this.rule.outputs.push({output: "", value: "" });
+  addAction() { 
+    this.rule.actions.push({expression: "" });
     return false;
   }
 
-  updateInputValue(index,event) {
+  // updateInputValue(index,event) {
+  //   let name = event.srcElement.name;
+  //   let value = event.srcElement.value;
+
+  //   this.rule.conditions[index][name] = value;
+  //   return false;
+  // }
+
+  // updateOutputValue(index, event) {
+  //   let name = event.srcElement.name;
+  //   let value = event.srcElement.value;
+
+  //   this.rule.outputs[index][name] = value;
+  //   return false;
+  // }
+
+  updateInputExpression(index, event) {
     let name = event.srcElement.name;
     let value = event.srcElement.value;
 
@@ -46,12 +64,14 @@ export class RuleComponent {
     return false;
   }
 
-  updateOutputValue(index,event) {
+  updateOutputExpression(index, event) {
     let name = event.srcElement.name;
     let value = event.srcElement.value;
 
     this.rule.outputs[index][name] = value;
     return false;
   }
+
+
 
 }

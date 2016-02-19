@@ -1,4 +1,5 @@
-System.register(['angular2/core', 'angular2/router', './rule/rule.component', './decision.service'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './rule/rule', './rule/rule.component', './decision.service'], function(exports_1) {
+    "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +9,7 @@ System.register(['angular2/core', 'angular2/router', './rule/rule.component', '.
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, rule_component_1, decision_service_1;
+    var core_1, router_1, rule_1, rule_component_1, decision_service_1;
     var DecisionComponent;
     return {
         setters:[
@@ -17,6 +18,9 @@ System.register(['angular2/core', 'angular2/router', './rule/rule.component', '.
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (rule_1_1) {
+                rule_1 = rule_1_1;
             },
             function (rule_component_1_1) {
                 rule_component_1 = rule_component_1_1;
@@ -29,19 +33,31 @@ System.register(['angular2/core', 'angular2/router', './rule/rule.component', '.
                 function DecisionComponent(_decisionService, _routeParams) {
                     this._decisionService = _decisionService;
                     this._routeParams = _routeParams;
-                    this.decision = { "id": 2, "name": "Beta" };
-                    this.title = this.decision.name;
+                    var thisDecisionComponent = this;
+                    if (!this.decision) {
+                        var id = +this._routeParams.get('id');
+                        this._decisionService.getDecision(id).then(function (decision) {
+                            thisDecisionComponent.decision = decision;
+                            thisDecisionComponent.title = thisDecisionComponent.decision.name;
+                            if (thisDecisionComponent.decision.rules) {
+                                var ruleObjects = thisDecisionComponent.decision.rules.map(function (ruleData) {
+                                    var newRule = new rule_1.Rule();
+                                    console.log(newRule);
+                                    console.log(ruleData);
+                                    newRule.setData(ruleData);
+                                    console.log(newRule);
+                                    return newRule;
+                                });
+                                console.log(ruleObjects);
+                                thisDecisionComponent.decision.rules = ruleObjects;
+                            }
+                        });
+                    }
+                    else {
+                        thisDecisionComponent.title = "New Decision";
+                    }
                 }
                 DecisionComponent.prototype.ngOnInit = function () {
-                    // 	if (!this.decision) {
-                    // 		this.decision = new Decision({ "id": 2, "name": "Beta" });
-                    // let id = +this._routeParams.get('id');
-                    // this._decisionService.getDecision(1).then(function(decision) {
-                    // this.decision = decision;
-                    // this.title = this.decision.name;
-                    // });
-                    // } 
-                    // 	this.title = this.decision.name;
                 };
                 DecisionComponent = __decorate([
                     core_1.Component({
@@ -53,7 +69,7 @@ System.register(['angular2/core', 'angular2/router', './rule/rule.component', '.
                     __metadata('design:paramtypes', [decision_service_1.DecisionService, router_1.RouteParams])
                 ], DecisionComponent);
                 return DecisionComponent;
-            })();
+            }());
             exports_1("DecisionComponent", DecisionComponent);
         }
     }

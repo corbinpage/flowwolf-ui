@@ -1,15 +1,15 @@
 System.register([], function(exports_1) {
+    "use strict";
     var Decision;
     return {
         setters:[],
         execute: function() {
             Decision = (function () {
-                // description: string;
-                // outputOptions: Array<Rule>;
                 function Decision() {
+                    this.slug = "slug";
                 }
                 return Decision;
-            })();
+            }());
             exports_1("Decision", Decision);
         }
     }

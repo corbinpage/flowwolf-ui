@@ -1,6 +1,33 @@
 <div class="container">
 	<div class="row">
 		<h2>{{title}}</h2>
-		<my-rule></my-rule>
-	</div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Inputs</h3>
+        <ol>
+          <li *ngFor="#input of decision.inputs">
+            <input [value]="input.name" disabled/>
+          </li>
+        </ol>
+      </div>
+      <div class="col-sm-6">
+        <h3>Outputs</h3>
+        <ol>
+          <li *ngFor="#output of decision.outputs">
+            <input [value]="output.name" disabled/>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Rules</h3>
+        <ol>
+          <li *ngFor="#ruleData of decision.rules">
+            <my-rule [rule]="ruleData"></my-rule>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
 </div>

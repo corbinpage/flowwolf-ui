@@ -1,4 +1,5 @@
 System.register(['angular2/platform/browser', 'angular2/router', './hero.service', './app.component'], function(exports_1) {
+    "use strict";
     var browser_1, router_1, hero_service_1, app_component_1;
     return {
         setters:[
@@ -15,6 +16,8 @@ System.register(['angular2/platform/browser', 'angular2/router', './hero.service
                 app_component_1 = app_component_1_1;
             }],
         execute: function() {
+            //noinspection JSUnresolvedFunction
+            //noinspection TypeScriptValidateTypes
             browser_1.bootstrap(app_component_1.AppComponent, [
                 router_1.ROUTER_PROVIDERS,
                 hero_service_1.HeroService

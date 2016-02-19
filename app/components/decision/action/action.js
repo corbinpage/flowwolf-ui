@@ -1,11 +1,11 @@
 System.register([], function(exports_1) {
     "use strict";
-    var Condition;
+    var Action;
     return {
         setters:[],
         execute: function() {
-            Condition = (function () {
-                function Condition() {
+            Action = (function () {
+                function Action() {
                     var data;
                     if (data) {
                         this.id = data.id ? data.id : -1;
@@ -13,15 +13,16 @@ System.register([], function(exports_1) {
                     }
                     else {
                         this.id = -1;
+                        this.expression = "1 === 1";
                     }
                 }
-                Condition.prototype.setData = function (data) {
+                Action.prototype.setData = function (data) {
                     this.expression = data.expression;
                 };
-                return Condition;
+                return Action;
             }());
-            exports_1("Condition", Condition);
+            exports_1("Action", Action);
         }
     }
 });
-//# sourceMappingURL=condition.js.map
+//# sourceMappingURL=action.js.map

@@ -19,21 +19,36 @@ export class DecisionComponent implements OnInit{
 
 	constructor(private _decisionService: DecisionService, 
 		private _routeParams: RouteParams) {
-		this.decision = { "id": 2, "name": "Beta" };
-		this.title = this.decision.name;
+		var thisDecisionComponent = this;
+
+		if (!this.decision) {
+			var id = +this._routeParams.get('id');
+			this._decisionService.getDecision(id).then(function(decision) {
+				thisDecisionComponent.decision = decision;
+				thisDecisionComponent.title = thisDecisionComponent.decision.name;
+
+				if (thisDecisionComponent.decision.rules) {
+					var ruleObjects = thisDecisionComponent.decision.rules.map(function(ruleData) {
+						var newRule = new Rule();
+						console.log(newRule);
+						console.log(ruleData);
+						newRule.setData(ruleData);
+						console.log(newRule);
+						return newRule;
+					});
+					console.log(ruleObjects);
+					thisDecisionComponent.decision.rules = ruleObjects;
+				}
+
+			});
+		} else {
+			thisDecisionComponent.title = "New Decision";
+		}
+
 	}
 
 	ngOnInit() {
-	// 	if (!this.decision) {
-	// 		this.decision = new Decision({ "id": 2, "name": "Beta" });
-			// let id = +this._routeParams.get('id');
-			// this._decisionService.getDecision(1).then(function(decision) {
-				// this.decision = decision;
-				// this.title = this.decision.name;
-			// });
-		// } 
 
-	// 	this.title = this.decision.name;
 	}
 
 	// gotoDetail(hero: Hero) {

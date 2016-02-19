@@ -1,21 +1,19 @@
 <div class="panel panel-info">
-  <div class="panel-heading">Rule Title</div>
+  <div class="panel-heading">{{rule.name}}</div>
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-8">
         <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
-              <td><strong>Input</strong></td>
-              <td>Operator</td>
-              <td>Value(s)</td>
+              <td><strong>Conditions Expression</strong></td>
               <td [hidden]="!rule.editing"></td>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="#condition of rule.conditions; #i=index" style="margin-bottom: 10px;">
               <!-- Input -->
-              <td>
+<!--               <td>
                 <span [hidden]="rule.editing">
                   {{condition.input || missingText }}
                 </span>
@@ -25,7 +23,7 @@
                   </select>
                 </span>
               </td>
-              <!-- Operator -->
+              Operator
               <td>
                 <span [hidden]="rule.editing">
                   {{ condition.operator || missingText }}
@@ -35,14 +33,14 @@
                     <option *ngFor="#operatorOption of rule.operators" value="{{operatorOption}}" selected="{{condition.operator === operatorOption ? 'selected' : ''}}">{{operatorOption}}</option>
                   </select>
                 </span>
-              </td>
+              </td> -->
               <!-- Value(s) -->
               <td>
                 <span [hidden]="rule.editing">
-                  {{ condition.values || missingText }}
+                  {{ condition.expression || missingText }}
                 </span>
                 <span [hidden]="!rule.editing">
-                  <input #condition.values value="{{condition.values}}" name="values" (change)="updateInputValue(i,$event)" />
+                  <input #condition.expression value="{{condition.expression}}" name="expression" (change)="updateInputExpression(i,$event)" />
                 </span>
               </td>
               <!-- Controls -->
@@ -69,16 +67,14 @@
         <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
-              <td><strong>Output</strong></td>
-              <td></td>
-              <td>Value</td>
+              <td><strong>Actions Expression</strong></td>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="#output of rule.outputs; #i=index" style="margin-bottom: 10px;">
+            <tr *ngFor="#action of rule.actions; #i=index" style="margin-bottom: 10px;">
               <!-- Output -->
-              <td>
-                <span [hidden]="rule.editing">
+              <!-- <td> -->
+<!--                 <span [hidden]="rule.editing">
                   {{ output.output || missingText }}
                 </span>
                 <span [hidden]="!rule.editing">
@@ -87,26 +83,25 @@
                   </select>
                 </span>
               </td>
-              <!-- = -->
               <td>
                 <span>
                   =
                 </span>
-              </td>       
+              </td>  -->      
               <!-- Value(s) -->
               <td>
                 <span [hidden]="rule.editing">
-                  {{ output.value || missingText }}
+                  {{ action.expression || missingText }}
                 </span>
                 <span [hidden]="!rule.editing">
-                  <input #output.value value="{{output.value}}" name="value" (change)="updateOutputValue(i,$event)" />
+                  <input #action.expression value="{{action.expression}}" name="expression" (change)="updateOutputExpression(i,$event)" />
                 </span>
               </td>       
             </tr>
           </tbody>
         </table>
         <span class="buttons">
-          <a class="btn btn-default" (click)="addOutput()" href="#" role="button">Add Row</a>
+          <a class="btn btn-default" (click)="addAction()" href="#" role="button">Add Row</a>
         </span>
       </div>
     </div>

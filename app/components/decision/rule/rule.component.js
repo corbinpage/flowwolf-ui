@@ -1,4 +1,5 @@
 System.register(['angular2/core', './rule', '../condition/condition'], function(exports_1) {
+    "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,6 +8,9 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
     };
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    var __param = (this && this.__param) || function (paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
     };
     var core_1, rule_1, condition_1;
     var RuleComponent;
@@ -23,8 +27,9 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
             }],
         execute: function() {
             RuleComponent = (function () {
-                function RuleComponent() {
-                    this.rule = new rule_1.Rule();
+                function RuleComponent(rule) {
+                    this.rule = rule;
+                    this.name = this.rule.name;
                     this.missingText = "Not set";
                 }
                 RuleComponent.prototype.toggleEdit = function () {
@@ -39,17 +44,29 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
                     this.rule.conditions.push(new condition_1.Condition());
                     return false;
                 };
-                RuleComponent.prototype.addOutput = function () {
-                    this.rule.outputs.push({ output: "", value: "" });
+                RuleComponent.prototype.addAction = function () {
+                    this.rule.actions.push({ expression: "" });
                     return false;
                 };
-                RuleComponent.prototype.updateInputValue = function (index, event) {
+                // updateInputValue(index,event) {
+                //   let name = event.srcElement.name;
+                //   let value = event.srcElement.value;
+                //   this.rule.conditions[index][name] = value;
+                //   return false;
+                // }
+                // updateOutputValue(index, event) {
+                //   let name = event.srcElement.name;
+                //   let value = event.srcElement.value;
+                //   this.rule.outputs[index][name] = value;
+                //   return false;
+                // }
+                RuleComponent.prototype.updateInputExpression = function (index, event) {
                     var name = event.srcElement.name;
                     var value = event.srcElement.value;
                     this.rule.conditions[index][name] = value;
                     return false;
                 };
-                RuleComponent.prototype.updateOutputValue = function (index, event) {
+                RuleComponent.prototype.updateOutputExpression = function (index, event) {
                     var name = event.srcElement.name;
                     var value = event.srcElement.value;
                     this.rule.outputs[index][name] = value;
@@ -61,11 +78,12 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
                         templateUrl: 'app/components/decision/rule/rule.component.html',
                         inputs: ['rule'],
                         bindings: [rule_1.Rule]
-                    }), 
-                    __metadata('design:paramtypes', [])
+                    }),
+                    __param(0, core_1.Inject(rule_1.Rule)), 
+                    __metadata('design:paramtypes', [rule_1.Rule])
                 ], RuleComponent);
                 return RuleComponent;
-            })();
+            }());
             exports_1("RuleComponent", RuleComponent);
         }
     }

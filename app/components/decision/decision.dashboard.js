@@ -1,4 +1,5 @@
 System.register(['angular2/core', 'angular2/router', './decision.service'], function(exports_1) {
+    "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -33,7 +34,7 @@ System.register(['angular2/core', 'angular2/router', './decision.service'], func
                     this._decisionService.getDecisions().then(function (decisions) { return _this.decisions = decisions; });
                 };
                 DecisionDashboard.prototype.gotoDetail = function (decision) {
-                    this._router.navigate(['DecisionComponent', { id: 1 }]);
+                    this._router.navigate(['DecisionComponent', { id: decision.id }]);
                 };
                 DecisionDashboard = __decorate([
                     core_1.Component({
@@ -45,7 +46,7 @@ System.register(['angular2/core', 'angular2/router', './decision.service'], func
                     __metadata('design:paramtypes', [decision_service_1.DecisionService, router_1.Router])
                 ], DecisionDashboard);
                 return DecisionDashboard;
-            })();
+            }());
             exports_1("DecisionDashboard", DecisionDashboard);
         }
     }

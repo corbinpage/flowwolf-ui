@@ -4,8 +4,14 @@ export class Decision {
 
 	id: number;
 	name: string;
-	// description: string;
-	// outputOptions: Array<Rule>;
+	description: string;
+  slug: string;
+  service: string;
+  inputs: Array<Object>;
+  outputs: Array<Object>;
+  rules: Array<Object>;
 
-	constructor() {}
+	constructor() {
+    this.slug = "slug";
+  }
 }
