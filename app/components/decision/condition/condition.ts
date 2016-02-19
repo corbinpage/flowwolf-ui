@@ -2,11 +2,13 @@ import {Inject} from 'angular2/core';
 export class Condition{
 
   id: number;
+  expression: string;
+
   input: string;
   operator: string;
   values: any;
   editing: boolean;
-  expression: string;
+
 
   constructor() {
     var data;

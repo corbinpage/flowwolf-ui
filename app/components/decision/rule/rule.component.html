@@ -1,8 +1,20 @@
 <div class="panel panel-info">
-  <div class="panel-heading">{{rule.name}}</div>
+  <div class="panel-heading">
+    <span>
+      {{rule.name}}
+    </span>
+    <span class="buttons pull-right">
+      <span class="buttons" [hidden]="rule.editing" >
+        <a class="btn btn-xs btn-default" (click)="toggleEdit()" href="#" role="button" >Edit</a>
+      </span>
+      <span class="buttons" [hidden]="!rule.editing">
+        <a class="btn btn-xs btn-success" (click)="toggleEdit()" href="#" role="button" >Done</a>
+      </span>
+      </span>
+  </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-xs-8">
+      <div class="col-xs-7">
         <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
@@ -36,7 +48,7 @@
               </td> -->
               <!-- Value(s) -->
               <td>
-                <span [hidden]="rule.editing">
+                <span [hidden]="rule.editing" [attr.class]="condition.expression ? '' : 'text-danger' ">
                   {{ condition.expression || missingText }}
                 </span>
                 <span [hidden]="!rule.editing">
@@ -53,17 +65,11 @@
           </tbody>
         </table>
         <span class="buttons">
-          <span class="buttons" [hidden]="rule.editing">
-            <a class="btn btn-default" (click)="toggleEdit()" href="#" role="button" >Edit</a>
-          </span>
-          <span class="buttons" [hidden]="!rule.editing">
-            <a class="btn btn-default btn-success" (click)="toggleEdit()" href="#" role="button" >Done</a>
-          </span>
           <a class="btn btn-default" (click)="addCondition()" href="#" role="button">Add Row</a>
         </span>
       </div>
 
-      <div class="col-xs-4">
+      <div class="col-xs-5">
         <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
@@ -90,7 +96,7 @@
               </td>  -->      
               <!-- Value(s) -->
               <td>
-                <span [hidden]="rule.editing">
+                <span [hidden]="rule.editing" [attr.class]="action.expression ? '' : 'text-danger' ">
                   {{ action.expression || missingText }}
                 </span>
                 <span [hidden]="!rule.editing">

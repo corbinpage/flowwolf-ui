@@ -24,20 +24,11 @@ export class DecisionComponent implements OnInit{
 		if (!this.decision) {
 			var id = +this._routeParams.get('id');
 			this._decisionService.getDecision(id).then(function(decision) {
-				thisDecisionComponent.decision = decision;
+				thisDecisionComponent.decision = new Decision(decision);
 				thisDecisionComponent.title = thisDecisionComponent.decision.name;
 
 				if (thisDecisionComponent.decision.rules) {
-					var ruleObjects = thisDecisionComponent.decision.rules.map(function(ruleData) {
-						var newRule = new Rule();
-						console.log(newRule);
-						console.log(ruleData);
-						newRule.setData(ruleData);
-						console.log(newRule);
-						return newRule;
-					});
-					console.log(ruleObjects);
-					thisDecisionComponent.decision.rules = ruleObjects;
+
 				}
 
 			});

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './rule/rule', './rule/rule.component', './decision.service'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './rule/rule.component', './decision', './decision.service'], function(exports_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,7 +9,7 @@ System.register(['angular2/core', 'angular2/router', './rule/rule', './rule/rule
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, rule_1, rule_component_1, decision_service_1;
+    var core_1, router_1, rule_component_1, decision_1, decision_service_1;
     var DecisionComponent;
     return {
         setters:[
@@ -19,11 +19,11 @@ System.register(['angular2/core', 'angular2/router', './rule/rule', './rule/rule
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (rule_1_1) {
-                rule_1 = rule_1_1;
-            },
             function (rule_component_1_1) {
                 rule_component_1 = rule_component_1_1;
+            },
+            function (decision_1_1) {
+                decision_1 = decision_1_1;
             },
             function (decision_service_1_1) {
                 decision_service_1 = decision_service_1_1;
@@ -37,19 +37,9 @@ System.register(['angular2/core', 'angular2/router', './rule/rule', './rule/rule
                     if (!this.decision) {
                         var id = +this._routeParams.get('id');
                         this._decisionService.getDecision(id).then(function (decision) {
-                            thisDecisionComponent.decision = decision;
+                            thisDecisionComponent.decision = new decision_1.Decision(decision);
                             thisDecisionComponent.title = thisDecisionComponent.decision.name;
                             if (thisDecisionComponent.decision.rules) {
-                                var ruleObjects = thisDecisionComponent.decision.rules.map(function (ruleData) {
-                                    var newRule = new rule_1.Rule();
-                                    console.log(newRule);
-                                    console.log(ruleData);
-                                    newRule.setData(ruleData);
-                                    console.log(newRule);
-                                    return newRule;
-                                });
-                                console.log(ruleObjects);
-                                thisDecisionComponent.decision.rules = ruleObjects;
                             }
                         });
                     }
