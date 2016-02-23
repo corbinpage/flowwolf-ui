@@ -16,9 +16,13 @@ export class DecisionComponent implements OnInit{
 	public decision: Decision;
 	public title: string;
 	public rule: Rule;
+	public editingInputs: boolean;
+	public editingOutputs: boolean;
 
 	constructor(private _decisionService: DecisionService, 
 		private _routeParams: RouteParams) {
+		this.editingInputs = false;
+		this.editingOutputs = false;
 		var thisDecisionComponent = this;
 
 		if (!this.decision) {
@@ -40,6 +44,16 @@ export class DecisionComponent implements OnInit{
 
 	ngOnInit() {
 
+	}
+
+	toggleEditInputs() {
+		this.editingInputs = !this.editingInputs;
+		return false;
+	}
+
+	toggleEditOutputs() {
+		this.editingOutputs = !this.editingOutputs;
+		return false;
 	}
 
 	// gotoDetail(hero: Hero) {

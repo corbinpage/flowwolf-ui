@@ -33,6 +33,8 @@ System.register(['angular2/core', 'angular2/router', './rule/rule.component', '.
                 function DecisionComponent(_decisionService, _routeParams) {
                     this._decisionService = _decisionService;
                     this._routeParams = _routeParams;
+                    this.editingInputs = false;
+                    this.editingOutputs = false;
                     var thisDecisionComponent = this;
                     if (!this.decision) {
                         var id = +this._routeParams.get('id');
@@ -48,6 +50,14 @@ System.register(['angular2/core', 'angular2/router', './rule/rule.component', '.
                     }
                 }
                 DecisionComponent.prototype.ngOnInit = function () {
+                };
+                DecisionComponent.prototype.toggleEditInputs = function () {
+                    this.editingInputs = !this.editingInputs;
+                    return false;
+                };
+                DecisionComponent.prototype.toggleEditOutputs = function () {
+                    this.editingOutputs = !this.editingOutputs;
+                    return false;
                 };
                 DecisionComponent = __decorate([
                     core_1.Component({

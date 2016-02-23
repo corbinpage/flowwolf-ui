@@ -21,14 +21,14 @@ System.register([], function(exports_1) {
                     "slug": "lifeExpectancy",
                     "service": "node-rules",
                     "inputs": [
-                        { "name": "gender" },
-                        { "name": "country" },
-                        { "name": "age" }
+                        { "name": "gender", "slug": "gender", "type": "text" },
+                        { "name": "country", "slug": "country", "type": "text" },
+                        { "name": "age", "slug": "age", "type": "text" }
                     ],
                     "outputs": [
-                        { "name": "countryArray" },
-                        { "name": "yearsLeft" },
-                        { "name": "lifeExpectancy" }
+                        { "name": "Country Array", "slug": "countryArray", "type": "text" },
+                        { "name": "Years Left", "slug": "yearsLeft", "type": "text" },
+                        { "name": "Life Expectancy", "slug": "lifeExpectancy", "type": "text" }
                     ],
                     "rules": [
                         {
