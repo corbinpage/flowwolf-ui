@@ -55,8 +55,23 @@ System.register(['angular2/core', 'angular2/router', './rule/rule.component', '.
                     this.editingInputs = !this.editingInputs;
                     return false;
                 };
+                DecisionComponent.prototype.updateInput = function (index, event) {
+                    var name = event.srcElement.name;
+                    var value = event.srcElement.value;
+                    this.decision.inputs[index][name] = value;
+                    this.decision.inputs[index]["slug"] = this.decision.inputs[index]["name"].replace(/ /i, "-");
+                    return false;
+                };
                 DecisionComponent.prototype.toggleEditOutputs = function () {
                     this.editingOutputs = !this.editingOutputs;
+                    return false;
+                };
+                DecisionComponent.prototype.updateOutput = function (index, event) {
+                    var name = event.srcElement.name;
+                    var value = event.srcElement.value;
+                    this.decision.outputs[index][name] = value;
+                    this.decision.outputs[index]["slug"] = this.decision.outputs[index]["name"].replace(/ /i, "-");
+                    ;
                     return false;
                 };
                 DecisionComponent = __decorate([

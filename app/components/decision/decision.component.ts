@@ -51,8 +51,26 @@ export class DecisionComponent implements OnInit{
 		return false;
 	}
 
+	updateInput(index, event) {
+		let name = event.srcElement.name;
+		let value = event.srcElement.value;
+
+		this.decision.inputs[index][name] = value;
+		this.decision.inputs[index]["slug"] = this.decision.inputs[index]["name"].replace(/ /i, "-");
+		return false;
+	}
+
 	toggleEditOutputs() {
 		this.editingOutputs = !this.editingOutputs;
+		return false;
+	}
+
+	updateOutput(index, event) {
+		let name = event.srcElement.name;
+		let value = event.srcElement.value;
+
+		this.decision.outputs[index][name] = value;
+		this.decision.outputs[index]["slug"] = this.decision.outputs[index]["name"].replace(/ /i, "-");;
 		return false;
 	}
 

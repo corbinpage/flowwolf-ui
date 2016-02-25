@@ -3,113 +3,124 @@
 		<h2>{{title}}</h2>
     <div class="row">
       <div class="col-sm-6">
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3>Inputs            
+        <section class="widget">
+          <header>
+            <h4>
+              <i class="fa fa-hand-o-up"></i>
+              Inputs
               <span class="buttons pull-right">
                 <span [hidden]="editingInputs">
                   <a class="btn btn-xs btn-default" (click)="toggleEditInputs()" href="#" role="button" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 </span>
                 <span [hidden]="!editingInputs">
-                  <a class="btn btn-xs btn-default" (click)="toggleEditInputs()" href="#" role="button" ><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></a>
+                  <a class="btn btn-xs btn-success" (click)="toggleEditInputs()" href="#" role="button" ><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></a>
                 </span>
               </span>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <table class="table table-bordered table-hover table-condensed">
+            </h4>
+          </header>
+          <div class="body">
+            <table class="table table-hover">
               <thead>
                 <tr>
-                  <td><strong>Name</strong></td>
-                  <td><strong>Identifier</strong></td>
-                  <td><strong>Type</strong></td>
+                                  <td>#</td>
+                  <td>Name</td>
+                  <td>Identifier</td>
+                  <td>Value</td>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="#input of decision.inputs; #i=index" style="margin-bottom: 10px;">
+                <tr *ngFor="#input of decision.inputs; #i=index" [attr.class]="editingInputs ? 'active' : '' ">
+                  <td></td>
                   <td>
-                    <span [hidden]="!input.name" [attr.class]="input.name ? '' : 'text-danger' ">
+                    <span [hidden]="editingInputs">
                       {{ input.name || missingText }}
                     </span>
-                    <span [hidden]="input.name">
-                      <input #input.name value="{{input.name}}" name="expression" (change)="updateInputExpression(i,$event)" />
+                    <span [hidden]="!editingInputs">
+                      <input #input.name value="{{input.name}}" name="name" (change)="updateInput(i,$event)" />
                     </span>
                   </td>
                   <td>
                     <span>
-                      {{ input.name || missingText }}
+                      <span>
+                        {{ input.slug || missingText }}
+                      </span>
                     </span>
                   </td>
                   <td>
-                    <span [hidden]="!input.name">
-                      {{ input.type || "text" }}
-                    </span>
-                    <span [hidden]="input.name">
-                      <input #input.name value="{{input.name}}" name="expression" (change)="updateInputExpression(i,$event)" />
+                    <span>
+                      <span [hidden]="editingInputs">
+                        {{ input.defaultValue || missingText }}
+                      </span>
+                      <span [hidden]="!editingInputs">
+                        <input #input.defaultValue value="{{input.defaultValue}}" name="defaultValue" (change)="updateInput(i,$event)" />
+                      </span>
                     </span>
                   </td>
                 </tr>
               </tbody>
             </table>
-
           </div>
-        </div>
-
+        </section>
       </div>
       <div class="col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-          <h3>Outputs            
+        <section class="widget">
+          <header>
+            <h4>
+              <i class="fa fa-hand-o-up"></i>
+              Outputs
               <span class="buttons pull-right">
                 <span [hidden]="editingOutputs">
                   <a class="btn btn-xs btn-default" (click)="toggleEditOutputs()" href="#" role="button" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 </span>
                 <span [hidden]="!editingOutputs">
-                  <a class="btn btn-xs btn-default" (click)="toggleEditOutputs()" href="#" role="button" ><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></a>
+                  <a class="btn btn-xs btn-success" (click)="toggleEditOutputs()" href="#" role="button" ><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></a>
                 </span>
               </span>
-            </h3>
-          </div>
-          <div class="panel-body">
-
-            <table class="table table-bordered table-hover table-condensed">
+            </h4>
+          </header>
+          <div class="body">
+            <table class="table table-hover">
               <thead>
                 <tr>
-                  <td><strong>Name</strong></td>
-                  <td><strong>Identifier</strong></td>
-                  <td><strong>Type</strong></td>
+                  <td>#</td>
+                  <td>Name</td>
+                  <td>Identifier</td>
+                  <td>Value</td>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="#output of decision.outputs; #i=index" style="margin-bottom: 10px;">
+                <tr *ngFor="#output of decision.outputs; #i=index" [attr.class]="editingOutputs ? 'active' : '' ">
+                  <td></td>
                   <td>
-                    <span [hidden]="!output.name" [attr.class]="output.name ? '' : 'text-danger' ">
+                    <span [hidden]="editingOutputs">
                       {{ output.name || missingText }}
                     </span>
-                    <span [hidden]="output.name">
-                      <input #output.name value="{{output.name}}" name="expression" (change)="updateInputExpression(i,$event)" />
+                    <span [hidden]="!editingOutputs">
+                      <input #output.name value="{{output.name}}" name="name" (change)="updateOutput(i,$event)" />
                     </span>
                   </td>
                   <td>
                     <span>
-                      {{ output.name || missingText }}
+                      <span>
+                        {{ output.slug || missingText }}
+                      </span>
                     </span>
                   </td>
                   <td>
-                    <span [hidden]="!output.name">
-                      {{ output.type || "text" }}
-                    </span>
-                    <span [hidden]="output.name">
-                      <input #output.name value="{{output.name}}" name="expression" (change)="updateInputExpression(i,$event)" />
+                    <span>
+                      <span [hidden]="editingOutputs">
+                        {{ output.defaultValue || missingText }}
+                      </span>
+                      <span [hidden]="!editingOutputs">
+                        <input #output.defaultValue value="{{output.defaultValue}}" name="defaultValue" (change)="updateOutput(i,$event)" />
+                      </span>
                     </span>
                   </td>
                 </tr>
               </tbody>
             </table>
-
           </div>
-        </div>
+        </section>
       </div>
     </div>
     <div class="row">

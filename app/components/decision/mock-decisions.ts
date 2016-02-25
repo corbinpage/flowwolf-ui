@@ -17,14 +17,14 @@ export var MOCK_DECISIONS: Decision[] = [
   "slug": "lifeExpectancy",
   "service": "node-rules",
   "inputs": [
-  { "name": "gender", "slug": "gender", "type": "text"},
-  { "name": "country", "slug": "country", "type": "text" },
-  { "name": "age", "slug": "age", "type": "text" }
+    { "name": "gender", "slug": "gender", "defaultValue": "M" },
+    { "name": "country", "slug": "country", "defaultValue": "USA" },
+    { "name": "age", "slug": "age", "defaultValue": 28 }
   ],
   "outputs": [
-  { "name": "Country Array", "slug": "countryArray", "type": "text" },
-  { "name": "Years Left", "slug": "yearsLeft", "type": "text" },
-  { "name": "Life Expectancy", "slug": "lifeExpectancy", "type": "text" }
+    { "name": "Country Array", "slug": "countryArray"},
+    { "name": "Years Left", "slug": "yearsLeft"},
+    { "name": "Life Expectancy", "slug": "lifeExpectancy"}
   ],
   "rules": [
   {
