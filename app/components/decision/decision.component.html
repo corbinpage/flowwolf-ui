@@ -5,38 +5,35 @@
       <div class="col-sm-6">
         <section class="widget">
           <header>
-            <h4>
-              <i class="fa fa-hand-o-up"></i>
-              Inputs
-              <span class="buttons pull-right">
-                <span [hidden]="editingInputs">
-                  <a class="btn btn-xs btn-default" (click)="toggleEditInputs()" href="#" role="button" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                </span>
-                <span [hidden]="!editingInputs">
-                  <a class="btn btn-xs btn-success" (click)="toggleEditInputs()" href="#" role="button" ><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></a>
-                </span>
+            <h4><i class="fa fa-cogs"></i> Inputs</h4>
+            <div class="actions">
+              <span [hidden]="editingInputs">
+                <button type="button" [hidden]="editingInputs" class="btn btn-sm btn-default pull-right" (click)="toggleEditInputs()" href="#"><i class="fa fa-edit fa-lg"></i></button>
               </span>
-            </h4>
+              <span type="button" [hidden]="!editingInputs">
+                <button class="btn btn-sm btn-success pull-right" (click)="toggleEditInputs()" href="#"><i class="fa fa-check-square-o fa-lg"></i></button>
+              </span>
+            </div>
           </header>
           <div class="body">
-            <table class="table table-hover">
+            <table class="table table-striped table-condensed">
               <thead>
                 <tr>
-                                  <td>#</td>
+                  <td>#</td>
                   <td>Name</td>
                   <td>Identifier</td>
                   <td>Value</td>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="#input of decision.inputs; #i=index" [attr.class]="editingInputs ? 'active' : '' ">
-                  <td></td>
+                <tr *ngFor="#input of decision.inputs; #i=index">
+                  <td>{{i+1}}</td>
                   <td>
                     <span [hidden]="editingInputs">
                       {{ input.name || missingText }}
                     </span>
                     <span [hidden]="!editingInputs">
-                      <input #input.name value="{{input.name}}" name="name" (change)="updateInput(i,$event)" />
+                      <input type="text" #input.name value="{{input.name}}" name="name" (change)="updateInput(i,$event)" />
                     </span>
                   </td>
                   <td>
@@ -52,7 +49,7 @@
                         {{ input.defaultValue || missingText }}
                       </span>
                       <span [hidden]="!editingInputs">
-                        <input #input.defaultValue value="{{input.defaultValue}}" name="defaultValue" (change)="updateInput(i,$event)" />
+                        <input type="text" #input.defaultValue value="{{input.defaultValue}}" name="defaultValue" (change)="updateInput(i,$event)" />
                       </span>
                     </span>
                   </td>
@@ -65,21 +62,18 @@
       <div class="col-sm-6">
         <section class="widget">
           <header>
-            <h4>
-              <i class="fa fa-hand-o-up"></i>
-              Outputs
-              <span class="buttons pull-right">
-                <span [hidden]="editingOutputs">
-                  <a class="btn btn-xs btn-default" (click)="toggleEditOutputs()" href="#" role="button" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                </span>
-                <span [hidden]="!editingOutputs">
-                  <a class="btn btn-xs btn-success" (click)="toggleEditOutputs()" href="#" role="button" ><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></a>
-                </span>
+            <h4><i class="fa fa-check"></i> Outputs</h4>
+            <div class="actions">
+              <span [hidden]="editingOutputs">
+                <button type="button" [hidden]="editingOutputs" class="btn btn-sm btn-default pull-right" (click)="toggleEditOutputs()" href="#"><i class="fa fa-edit fa-lg"></i></button>
               </span>
-            </h4>
+              <span type="button" [hidden]="!editingOutputs">
+                <button class="btn btn-sm btn-success pull-right" (click)="toggleEditOutputs()" href="#"><i class="fa fa-check-square-o fa-lg"></i></button>
+              </span>
+            </div>
           </header>
           <div class="body">
-            <table class="table table-hover">
+            <table class="table table-striped table-condensed">
               <thead>
                 <tr>
                   <td>#</td>
@@ -89,14 +83,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="#output of decision.outputs; #i=index" [attr.class]="editingOutputs ? 'active' : '' ">
-                  <td></td>
+                <tr *ngFor="#output of decision.outputs; #i=index">
+                  <td>{{i+1}}</td>
                   <td>
                     <span [hidden]="editingOutputs">
                       {{ output.name || missingText }}
                     </span>
                     <span [hidden]="!editingOutputs">
-                      <input #output.name value="{{output.name}}" name="name" (change)="updateOutput(i,$event)" />
+                      <input type="text" #output.name value="{{output.name}}" name="name" (change)="updateOutput(i,$event)" />
                     </span>
                   </td>
                   <td>
@@ -112,7 +106,7 @@
                         {{ output.defaultValue || missingText }}
                       </span>
                       <span [hidden]="!editingOutputs">
-                        <input #output.defaultValue value="{{output.defaultValue}}" name="defaultValue" (change)="updateOutput(i,$event)" />
+                        <input type="text" #output.defaultValue value="{{output.defaultValue}}" name="defaultValue" (change)="updateOutput(i,$event)" />
                       </span>
                     </span>
                   </td>
