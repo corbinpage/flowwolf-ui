@@ -31,7 +31,23 @@ System.register(['angular2/core', './rule', '../condition/condition'], function(
                     this.rule = rule;
                     this.name = this.rule.name;
                     this.missingText = "Not set";
+                    this.collapseLinkActivated = false;
                 }
+                RuleComponent.prototype.ngOnInit = function () {
+                };
+                RuleComponent.prototype.toggleCollapse = function (event) {
+                    this.collapseLinkActivated = true;
+                    var ibox = $(event.target).closest('div.ibox');
+                    var button = $(event.target).find('i');
+                    var content = ibox.find('div.ibox-content');
+                    content.slideToggle(200);
+                    button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+                    ibox.toggleClass('').toggleClass('border-bottom');
+                    setTimeout(function () {
+                        ibox.resize();
+                        ibox.find('[id^=map-]').resize();
+                    }, 50);
+                };
                 RuleComponent.prototype.toggleEdit = function () {
                     this.rule.editing = !this.rule.editing;
                     return false;

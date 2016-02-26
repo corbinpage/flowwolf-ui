@@ -1,127 +1,158 @@
-<div class="container">
-	<div class="row">
-		<h2>{{title}}</h2>
-    <div class="row">
-      <div class="col-sm-6">
-        <section class="widget">
-          <header>
-            <h4><i class="fa fa-cogs"></i> Inputs</h4>
-            <div class="actions">
-              <span [hidden]="editingInputs">
-                <button type="button" [hidden]="editingInputs" class="btn btn-sm btn-default pull-right" (click)="toggleEditInputs()" href="#"><i class="fa fa-edit fa-lg"></i></button>
-              </span>
-              <span type="button" [hidden]="!editingInputs">
-                <button class="btn btn-sm btn-success pull-right" (click)="toggleEditInputs()" href="#"><i class="fa fa-check-square-o fa-lg"></i></button>
-              </span>
-            </div>
-          </header>
-          <div class="body">
-            <table class="table table-striped table-condensed">
-              <thead>
-                <tr>
-                  <td>#</td>
-                  <td>Name</td>
-                  <td>Identifier</td>
-                  <td>Value</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="#input of decision.inputs; #i=index">
-                  <td>{{i+1}}</td>
-                  <td>
-                    <span [hidden]="editingInputs">
-                      {{ input.name || missingText }}
-                    </span>
-                    <span [hidden]="!editingInputs">
-                      <input type="text" #input.name value="{{input.name}}" name="name" (change)="updateInput(i,$event)" />
-                    </span>
-                  </td>
-                  <td>
-                    <span>
-                      <span>
-                        {{ input.slug || missingText }}
-                      </span>
-                    </span>
-                  </td>
-                  <td>
-                    <span>
-                      <span [hidden]="editingInputs">
-                        {{ input.defaultValue || missingText }}
-                      </span>
-                      <span [hidden]="!editingInputs">
-                        <input type="text" #input.defaultValue value="{{input.defaultValue}}" name="defaultValue" (change)="updateInput(i,$event)" />
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+<div class="row">
+  <div class="col-sm-6">
+  <a type="button" class="btn btn-success" (click)="runDecision()">
+      <i class="fa fa-play"></i>
+      <span>Run</span>
+    </a>
+  </div>
+</div>
+<div class="col-sm-6">
+  <section class="widget">
+    <div class="ibox float-e-margins" data-type="inputs">
+      <div class="ibox-title">
+        <h5><i class="fa fa-cogs"></i> Inputs</h5>
+        <div class="ibox-tools">
+          <a [hidden]="editingInputs" (click)="toggleEdit()" href="#">
+            <i class="fa fa-edit fa-lg"></i>
+          </a>
+          <a [hidden]="!editingInputs" (click)="toggleEdit()" href="#">
+            <i class="fa fa-check-square-o fa-lg done"></i>
+          </a>
+          <a class="collapse-link" (click)="toggleCollapse($event)">
+            <i class="fa fa-chevron-down"></i>
+          </a>
+        </div>
       </div>
-      <div class="col-sm-6">
-        <section class="widget">
-          <header>
-            <h4><i class="fa fa-check"></i> Outputs</h4>
-            <div class="actions">
-              <span [hidden]="editingOutputs">
-                <button type="button" [hidden]="editingOutputs" class="btn btn-sm btn-default pull-right" (click)="toggleEditOutputs()" href="#"><i class="fa fa-edit fa-lg"></i></button>
-              </span>
-              <span type="button" [hidden]="!editingOutputs">
-                <button class="btn btn-sm btn-success pull-right" (click)="toggleEditOutputs()" href="#"><i class="fa fa-check-square-o fa-lg"></i></button>
-              </span>
-            </div>
-          </header>
-          <div class="body">
-            <table class="table table-striped table-condensed">
-              <thead>
-                <tr>
-                  <td>#</td>
-                  <td>Name</td>
-                  <td>Identifier</td>
-                  <td>Value</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="#output of decision.outputs; #i=index">
-                  <td>{{i+1}}</td>
-                  <td>
-                    <span [hidden]="editingOutputs">
-                      {{ output.name || missingText }}
-                    </span>
-                    <span [hidden]="!editingOutputs">
-                      <input type="text" #output.name value="{{output.name}}" name="name" (change)="updateOutput(i,$event)" />
-                    </span>
-                  </td>
-                  <td>
-                    <span>
-                      <span>
-                        {{ output.slug || missingText }}
-                      </span>
-                    </span>
-                  </td>
-                  <td>
-                    <span>
-                      <span [hidden]="editingOutputs">
-                        {{ output.defaultValue || missingText }}
-                      </span>
-                      <span [hidden]="!editingOutputs">
-                        <input type="text" #output.defaultValue value="{{output.defaultValue}}" name="defaultValue" (change)="updateOutput(i,$event)" />
-                      </span>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+      <div class="ibox-content">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Identifier</th>
+              <th>Value</th>
+              <th [hidden]="!editingInputs">Remove?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="#input of decision.inputs; #i=index">
+              <td>{{i+1}}</td>
+              <td>
+                <span [hidden]="editingInputs">
+                  {{ input.name || missingText }}
+                </span>
+                <span [hidden]="!editingInputs">
+                  <input type="text" #input.name value="{{input.name}}" name="name" (change)="updateInput(i,$event)" class="form-control"/>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <span>
+                    {{ input.slug || missingText }}
+                  </span>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <span [hidden]="editingInputs">
+                    {{ input.defaultValue || missingText }}
+                  </span>
+                  <span [hidden]="!editingInputs">
+                    <input type="text" #input.defaultValue value="{{input.defaultValue}}" name="defaultValue" (change)="updateInput(i,$event)" class="form-control"/>
+                  </span>
+                </span>
+              </td>
+              <td [hidden]="!editingInputs">
+                <a class="text-danger" (click)="removeRow(i, $event)">
+                  <i class="fa fa-remove fa-2x"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <a type="button" class="btn btn-default" (click)="addRow($event)">
+          <i class="fa fa-plus"></i>
+          <span>Input</span>
+        </a>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <h3>Rules</h3>
-        <my-rule *ngFor="#ruleData of decision.rules" [rule]="ruleData"></my-rule>
+  </section>
+</div>
+<div class="col-sm-6">
+  <section class="widget">
+    <div class="ibox float-e-margins" data-type="outputs">
+      <div class="ibox-title">
+        <h5><i class="fa fa-check"></i> Outputs</h5>
+        <div class="ibox-tools">
+          <a [hidden]="editingOutputs" (click)="toggleEdit()" href="#">
+            <i class="fa fa-edit fa-lg"></i>
+          </a>
+          <a [hidden]="!editingOutputs" (click)="toggleEdit()" href="#">
+            <i class="fa fa-check-square-o fa-lg done"></i>
+          </a>
+          <a class="collapse-link" (click)="toggleCollapse($event)">
+            <i class="fa fa-chevron-down"></i>
+          </a>
+        </div>
+      </div>
+      <div class="ibox-content">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Identifier</th>
+              <th>Value</th>
+              <th [hidden]="!editingOutputs">Remove?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="#output of decision.outputs; #i=index">
+              <td>{{i+1}}</td>
+              <td>
+                <span [hidden]="editingOutputs">
+                  {{ output.name || missingText }}
+                </span>
+                <span [hidden]="!editingOutputs">
+                  <input type="text" #output.name value="{{output.name}}" name="name" (change)="updateOutput(i,$event)" class="form-control"/>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <span>
+                    {{ output.slug || missingText }}
+                  </span>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <span [hidden]="editingOutputs">
+                    {{ output.defaultValue || missingText }}
+                  </span>
+                  <span [hidden]="!editingOutputs">
+                    <input type="text" #output.defaultValue value="{{output.defaultValue}}" name="defaultValue" (change)="updateOutput(i,$event)" class="form-control"/>
+                  </span>
+                </span>
+              </td>
+              <td [hidden]="!editingOutputs">
+                <a class="text-danger" (click)="removeRow(i, $event)">
+                  <i class="fa fa-remove fa-2x"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <a type="button" class="btn btn-default" (click)="addRow($event)">
+          <i class="fa fa-plus"></i>
+          <span>Output</span>
+        </a>
       </div>
     </div>
+  </section>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Rules</h3>
+    <my-rule *ngFor="#ruleData of decision.rules" [rule]="ruleData"></my-rule>
   </div>
 </div>

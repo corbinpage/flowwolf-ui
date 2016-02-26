@@ -8,20 +8,12 @@ import {DecisionComponent} from './components/decision/decision.component';
 
 @Component({
   selector: 'my-app',
-  template: `
-    <h1>{{title}}</h1>
-    <a [routerLink]="['DecisionDashboard', {id: '1' } ]">Decisions</a>
-    <span> | </span>
-    <a [routerLink]="['Heroes']">Heroes</a>
-    <span> | </span>
-    <a [routerLink]="['Dashboard']">HeroDash</a>
-    <router-outlet></router-outlet>
-  `,
-  styles: [`
-    a:visited, a:link {color: #444;}
-    a:hover {color: white; background-color: #1171a3;}
-    a.router-link-active {color: white; background-color: #52b9e9;}
-  `],
+  templateUrl: 'app/app.component.html',
+  // styles: [`
+  //   a:visited, a:link {color: #444;}
+  //   a:hover {color: white; background-color: #1171a3;}
+  //   a.router-link-active {color: white; background-color: #52b9e9;}
+  // `],
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([

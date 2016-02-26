@@ -13,11 +13,31 @@ export class RuleComponent {
   rule: Rule;
   name: string;
   missingText: string;
+  collapseLinkActivated: boolean;
 
   constructor(@Inject(Rule) rule: Rule) {
     this.rule = rule;
     this.name = this.rule.name;
     this.missingText = "Not set"; 
+    this.collapseLinkActivated = false; 
+  }
+
+  ngOnInit() {
+
+  }
+
+  toggleCollapse(event) {
+    this.collapseLinkActivated = true;
+    var ibox = $(event.target).closest('div.ibox');
+    var button = $(event.target).find('i');
+    var content = ibox.find('div.ibox-content');
+    content.slideToggle(200);
+    button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+    ibox.toggleClass('').toggleClass('border-bottom');
+    setTimeout(function() {
+      ibox.resize();
+      ibox.find('[id^=map-]').resize();
+    }, 50);
   }
 
   toggleEdit() {

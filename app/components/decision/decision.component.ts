@@ -4,12 +4,13 @@ import {Rule} from './rule/rule';
 import {RuleComponent} from './rule/rule.component';
 import {Decision} from './decision';
 import {DecisionService} from './decision.service';
+import {RunService} from '../run/run.service';
 
 @Component({
 	selector: 'my-decision',
 	templateUrl: 'app/components/decision/decision.component.html',
 	directives: [RuleComponent],
-	bindings: [DecisionService]
+	bindings: [DecisionService, RunService]
 })
 
 export class DecisionComponent implements OnInit{
@@ -46,8 +47,59 @@ export class DecisionComponent implements OnInit{
 
 	}
 
-	toggleEditInputs() {
-		this.editingInputs = !this.editingInputs;
+	runDecision() {
+		console.log("Starting run...");
+		var run = new RunService(this.decision);
+		run.setInputs(this.decision.inputs);
+		run.setSession();
+		run.run();
+		console.log(run);
+	}
+
+	toggleCollapse(event) {
+		this.collapseLinkActivated = true;
+		var ibox = $(event.target).closest('div.ibox');
+		var button = $(event.target).find('i');
+		var content = ibox.find('div.ibox-content');
+		content.slideToggle(200);
+		button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+		ibox.toggleClass('').toggleClass('border-bottom');
+		setTimeout(function() {
+			ibox.resize();
+			ibox.find('[id^=map-]').resize();
+		}, 50);
+	}
+
+	toggleEdit($event) {
+		let datatype = $(event.target).closest('.ibox').attr("data-type");
+
+		if (datatype === "inputs") {
+			this.editingInputs = !this.editingInputs;
+		} else if (datatype === "outputs") {
+			this.editingOutputs = !this.editingOutputs;
+		}
+		return false;
+	}
+
+	addRow(event) {
+		let datatype = $(event.target).closest('.ibox').attr("data-type");
+
+		this.decision[datatype].push({});
+
+		if (datatype === 'inputs') {
+			this.editingInputs = true;
+		} else if (datatype === 'outputs') {
+			this.editingOutputs = true;
+		}
+		// $('div[data-type=' + datatype + '] table tbody tr:last-of-type td input[name=name]').focus();
+
+		return false;
+	}
+
+	removeRow(index, event) {
+		let datatype = $(event.target).closest('.ibox').attr("data-type");
+
+		this.decision[datatype].splice(index, 1);
 		return false;
 	}
 
@@ -56,12 +108,9 @@ export class DecisionComponent implements OnInit{
 		let value = event.srcElement.value;
 
 		this.decision.inputs[index][name] = value;
-		this.decision.inputs[index]["slug"] = this.decision.inputs[index]["name"].replace(/ /i, "-");
-		return false;
-	}
-
-	toggleEditOutputs() {
-		this.editingOutputs = !this.editingOutputs;
+		if (this.decision.outputs[index]["name"]) {
+			this.decision.inputs[index]["slug"] = this.decision.inputs[index]["name"].replace(/ /i, "-");
+		}
 		return false;
 	}
 
@@ -70,7 +119,9 @@ export class DecisionComponent implements OnInit{
 		let value = event.srcElement.value;
 
 		this.decision.outputs[index][name] = value;
-		this.decision.outputs[index]["slug"] = this.decision.outputs[index]["name"].replace(/ /i, "-");;
+		if(this.decision.outputs[index]["name"]) {
+			this.decision.outputs[index]["slug"] = this.decision.outputs[index]["name"].replace(/ /i, "-");;
+		}
 		return false;
 	}
 

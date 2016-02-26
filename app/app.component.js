@@ -42,8 +42,12 @@ System.register(['angular2/core', 'angular2/router', './heroes.component', './he
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <a [routerLink]=\"['DecisionDashboard', {id: '1' } ]\">Decisions</a>\n    <span> | </span>\n    <a [routerLink]=\"['Heroes']\">Heroes</a>\n    <span> | </span>\n    <a [routerLink]=\"['Dashboard']\">HeroDash</a>\n    <router-outlet></router-outlet>\n  ",
-                        styles: ["\n    a:visited, a:link {color: #444;}\n    a:hover {color: white; background-color: #1171a3;}\n    a.router-link-active {color: white; background-color: #52b9e9;}\n  "],
+                        templateUrl: 'app/app.component.html',
+                        // styles: [`
+                        //   a:visited, a:link {color: #444;}
+                        //   a:hover {color: white; background-color: #1171a3;}
+                        //   a.router-link-active {color: white; background-color: #52b9e9;}
+                        // `],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([

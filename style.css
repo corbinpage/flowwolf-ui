@@ -1,4 +1,18 @@
-h2 { color: #444; font-weight: lighter; }
-body { margin: 2em; }
-body, input[text], button { color: #888; font-family: Cambria, Georgia; }
-button {padding: 0.2em; font-size: 14px}
+.ibox-tools a i.done {
+  color: #1ab394;
+}
+
+#page-wrapper {
+  margin: 0 0 0 0;
+}
+
+.ibox-content input {
+  font-size: 13px;
+}
+
+.ibox-content table td i {
+  display:block;
+  text-align:center;
+  vertical-align: middle;
+}
+
