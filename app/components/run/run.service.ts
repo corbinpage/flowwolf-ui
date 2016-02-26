@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Decision} from '../decision/decision';
-import {RuleEngine} from './node-rules/index';
+// import {RuleEngine} from './node-rules/index';
 
 @Injectable()
 export class RunService {
@@ -26,7 +26,8 @@ export class RunService {
       return thisService.setRule(r);
     })
 
-    this.session = new RuleEngine(rules, { ignoreFactChanges: true });
+    thisSession = {};
+    // this.session = new RuleEngine(rules, { ignoreFactChanges: true });
   };
 
   setRule(ruleData) {

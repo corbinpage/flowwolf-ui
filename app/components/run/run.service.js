@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../decision/decision', './node-rules/index'], function(exports_1) {
+System.register(['angular2/core', '../decision/decision'], function(exports_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,7 +9,7 @@ System.register(['angular2/core', '../decision/decision', './node-rules/index'],
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, decision_1, index_1;
+    var core_1, decision_1;
     var RunService;
     return {
         setters:[
@@ -18,11 +18,9 @@ System.register(['angular2/core', '../decision/decision', './node-rules/index'],
             },
             function (decision_1_1) {
                 decision_1 = decision_1_1;
-            },
-            function (index_1_1) {
-                index_1 = index_1_1;
             }],
         execute: function() {
+            // import {RuleEngine} from './node-rules/index';
             RunService = (function () {
                 function RunService(decision) {
                     this.decision = decision;
@@ -38,7 +36,8 @@ System.register(['angular2/core', '../decision/decision', './node-rules/index'],
                     var rules = this.decision.rules.map(function (r) {
                         return thisService.setRule(r);
                     });
-                    this.session = new index_1.RuleEngine(rules, { ignoreFactChanges: true });
+                    thisSession = {};
+                    // this.session = new RuleEngine(rules, { ignoreFactChanges: true });
                 };
                 ;
                 RunService.prototype.setRule = function (ruleData) {
