@@ -30,41 +30,41 @@ export var MOCK_DECISIONS: Decision[] = [
   {
     "name": "getGenderArrayM", "order": 1,
     "conditions": [
-    { "expression": "this.gender === 'M'" }
+    { "expression": '{ "==": [{ "var": "gender" }, "M"] }' }
     ], "actions": [
-    { "expression": "this.ageArray = [78, 80, 71, 71, 72]" }
+    { "expression": "ageArray = [78, 80, 71, 71, 72]" }
     ]
   },
   {
     "name": "getGenderArrayF", "order": 2,
     "conditions": [
-    { "expression": "this.gender === 'F'" }
+    { "expression": '{ "===": [{ "var": "gender" }, "F"] }' }
     ], "actions": [
-    { "expression": "this.ageArray = [76, 87, 73, 71, 72]" }
+    { "expression": "ageArray = [76, 87, 73, 71, 72]" }
     ]
   },
   {
     "name": "getGenderArrayElse", "order": 3,
     "conditions": [
-    { "expression": "!this.countryArray" }
+    { "expression": '{ !: [countryArray] }' }
     ], "actions": [
-    { "expression": "this.ageArray = [77, 84, 72, 71, 72]" }
+    { "expression": "ageArray = [77, 84, 72, 71, 72]" }
     ]
   },
   {
     "name": "getDeathAge", "order": 4,
     "conditions": [
-    { "expression": "this.country !== null && this.ageArray !== null" }
+      { "expression": '{"and": "[{ " !== ": [{ "var": "country" }, null]}, { "!== ": [{ "var": "ageArray" }, null]}]" }' }
     ], "actions": [
-    { "expression": "this.lifeExpectancy = this.ageArray[['usa', 'japan','australia','france','iceland'].indexOf(this.country ? this.country.toLowerCase() : '')]" }
+    { "expression": "lifeExpectancy = ageArray[['usa', 'japan','australia','france','iceland'].indexOf(country ? country.toLowerCase() : '')]" }
     ]
   },
   {
     "name": "getYearsLeft", "order": 5,
     "conditions": [
-    { "expression": "this.lifeExpectancy >= this.age" }
+    { "expression": '{ ">=": [{ "var": "lifeExpectancy" }, { "var": "age" }]}' }
     ], "actions": [
-    { "expression": "this.yearsLeft = this.lifeExpectancy - this.age" }
+    { "expression": "yearsLeft = lifeExpectancy - age" }
     ]
   },
   ]

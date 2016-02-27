@@ -1,6 +1,11 @@
 import {Injectable} from 'angular2/core';
 import {Decision} from '../decision/decision';
+// import {require} from 'requirejs/require.js';
+declare var requirejs: any;
+// var jsonLogic = require('../logic.js');
 // import {RuleEngine} from './node-rules/index';
+
+
 
 @Injectable()
 export class RunService {

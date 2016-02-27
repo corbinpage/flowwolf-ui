@@ -14,14 +14,13 @@
   <link href="/lib/inspinia/dist/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 
-  <script src="/node_modules/systemjs/dist/system.src.js"></script>
   <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="/node_modules/systemjs/dist/system.src.js"></script>
   <script src="/node_modules/es6-shim/es6-shim.min.js"></script>
   <script src="/node_modules/rxjs/bundles/Rx.js"></script>
   <script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
   <script src="/node_modules/angular2/bundles/router.dev.js"></script>
-  <script src="/node_modules/underscore/underscore.js"></script>
-  <script src="/app/components/run/node-rules/lib/node-rules.js"></script>
+  <script src="/lib/json-logic-js/logic.js"></script>
 
   <!-- Mainly scripts -->
   <script src="/lib/inspinia/dist/js/jquery-2.1.1.js"></script>
@@ -37,7 +36,9 @@
   <script src="/lib/inspinia/dist/js/plugins/pace/pace.min.js"></script>
 
   <script>
-    System.config({packages: {'app': {defaultExtension: 'js'}}});
+    System.config({
+      packages: {'app': {defaultExtension: 'js'}}
+    });
     System.import('app/boot').catch(console.log.bind(console));
   </script>
 </head>
